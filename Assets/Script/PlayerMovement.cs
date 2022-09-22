@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] GameObject player;
 
+
     Vector2 currentVector;
     public Vector3 movermentVector;
     Rigidbody myRb;
@@ -20,12 +21,13 @@ public class PlayerMovement : MonoBehaviour
     public bool isPress = false;
     public bool isJumpPress = false;
     public bool canJump = false;
+    public List<GameObject> clonePlayer;
 
 
 
-    
+
     // Start is called before the first frame update
-    
+
     void Start()
     {
         
@@ -63,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
             Quaternion toRotation = Quaternion.LookRotation(movermentVector, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.fixedDeltaTime);
         }
+        
     }
     void OnMove(InputValue movementVector2) //Get input form keyboard;
     {
@@ -94,6 +97,7 @@ public class PlayerMovement : MonoBehaviour
     {
         GameObject clone = Instantiate(player, transform.position, transform.rotation);
         clone.GetComponent<Rigidbody>().isKinematic = true;
+        clonePlayer.Add(clone);
         
     }
     private void OnCollisionExit(Collision collision)
@@ -117,5 +121,20 @@ public class PlayerMovement : MonoBehaviour
         //{
             canJump = true;
         //}
+    }
+    public void deleteClone()
+    {
+        for(int i = 0; i < clonePlayer.Count; i++)
+        {
+            Destroy(clonePlayer[i]);
+            clonePlayer.Remove(clonePlayer[i]);
+        }
+    }
+    public void enableClone()
+    {
+        for(int i = 0; i < clonePlayer.Count; i++)
+        {
+            clonePlayer[i].GetComponent<Rigidbody>().isKinematic = false;
+        }
     }
 }
