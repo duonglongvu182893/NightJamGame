@@ -6,23 +6,33 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement instance;
+   
 
     [SerializeField] float rotationSpeed;
+    [SerializeField] float speed;
+    [SerializeField] GameObject player;
 
     Vector2 currentVector;
-    Vector3 movermentVector;
+    public Vector3 movermentVector;
     Rigidbody myRb;
-    bool isPress = false;
-    bool isJumpPress = false;
+
+    public bool isPress = false;
+    public bool isJumpPress = false;
+    public bool canJump = false;
 
 
+
+    
     // Start is called before the first frame update
+    
     void Start()
     {
         
     }
     private void Awake()
     {
+        instance = this;
         myRb = GetComponent<Rigidbody>();
     }
 
@@ -42,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(isPress)
         {
-            myRb.MovePosition(transform.position + movermentVector * Time.fixedDeltaTime);
+            myRb.MovePosition(transform.position + movermentVector * Time.fixedDeltaTime * speed);
             
         }
     }
@@ -73,9 +83,39 @@ public class PlayerMovement : MonoBehaviour
     }
     void OnJump()
     {
-        
-        myRb.AddForce(movermentVector.x, 10f, movermentVector.y);
-        Debug.Log("da nhay");
+        if (canJump)
+        {
+            myRb.AddForce(movermentVector.x, 400f, movermentVector.y);
+        }
+
+        //Debug.Log("da nhay");
     }
-    
+    void OnClone()
+    {
+        GameObject clone = Instantiate(player, transform.position, transform.rotation);
+        clone.GetComponent<Rigidbody>().isKinematic = true;
+        
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        //if (collision.transform.tag =="Platform")
+        //{
+            canJump = false;
+        //}
+        
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        //if (collision.transform.tag == "Platform")
+        //{
+            canJump = true;
+        //}
+    }
+    private void OnCollisionStay(Collision collision)
+    {
+        //if (collision.transform.tag == "Platform")
+        //{
+            canJump = true;
+        //}
+    }
 }
