@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 movermentVector;
     Rigidbody myRb;
 
+    public bool a;
     public bool isPress = false;
     public bool isJumpPress = false;
     public bool canJump = false;
@@ -36,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     {
         instance = this;
         myRb = GetComponent<Rigidbody>();
+        Debug.Log(a);
     }
 
     // Update is called once per frame
