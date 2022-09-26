@@ -16,8 +16,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = GenMap.instance.firtSpawPosition + new Vector3(-1.5f, 1.5f, 1.5f);
-  
+
+        transform.position = GenMap.instance.firtSpawPosition + new Vector3(0, 3, 0);
     }
 
     // Update is called once per frame
@@ -25,6 +25,10 @@ public class PlayerController : MonoBehaviour
     {
         getInput();
     }
+    //private void FixedUpdate()
+    //{
+    //    getInput();
+    //}
 
     private void getInput()
     {
@@ -67,26 +71,26 @@ public class PlayerController : MonoBehaviour
         }
         isMoving = false;
     }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.transform.tag == "W_Brick")
-        {
-            Player.GetComponent<MeshRenderer>().material = b_brick;
-        }
-        if (collision.transform.tag == "Black_Brick")
-        {
-            Player.GetComponent<MeshRenderer>().material = w_brick;
-        }
-    }
-    private void OnCollisionStay(Collision collision)
-    {
-        if (collision.transform.tag == "W_Brick")
-        {
-            Player.GetComponent<MeshRenderer>().material = b_brick;
-        }
-        if (collision.transform.tag == "Black_Brick")
-        {
-            Player.GetComponent<MeshRenderer>().material = w_brick;
-        }
-    }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.transform.tag == "W_Brick")
+    //    {
+    //        Player.GetComponent<MeshRenderer>().material = b_brick;
+    //    }
+    //    if (collision.transform.tag == "Black_Brick")
+    //    {
+    //        Player.GetComponent<MeshRenderer>().material = w_brick;
+    //    }
+    //}
+    //private void OnCollisionStay(Collision collision)
+    //{
+    //    if (collision.transform.tag == "W_Brick")
+    //    {
+    //        Player.GetComponent<MeshRenderer>().material = b_brick;
+    //    }
+    //    if (collision.transform.tag == "Black_Brick")
+    //    {
+    //        Player.GetComponent<MeshRenderer>().material = w_brick;
+    //    }
+    //}
 }
