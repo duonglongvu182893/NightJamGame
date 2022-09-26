@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Platform
   - EnableWall
+  - Black_Brick
+  - W_Brick
   layers:
   - Default
   - TransparentFX

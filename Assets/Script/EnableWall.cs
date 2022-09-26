@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class EnableWall : MonoBehaviour
 {
     [SerializeField] GameObject Player;
@@ -15,19 +16,19 @@ public class EnableWall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        enableWall();
+        //enableWall();
     }
-    void enableWall()
-    {
-        if(Vector3.Distance(position.transform.position, Player.transform.position)<5f)
-        {
-            PlatformControll.instance.logicMapGame();
+    //void enableWall()
+    //{
+    //    if(Vector3.Distance(position.transform.position, Player.transform.position)<5f)
+    //    {
+    //        PlatformControll.instance.logicMapGame();
 
-        }
-        else
-        {
-            PlatformControll.instance.endLogic();
-        }
-    }
+    //    }
+    //    else
+    //    {
+    //        PlatformControll.instance.endLogic();
+    //    }
+    //}
     
 }
