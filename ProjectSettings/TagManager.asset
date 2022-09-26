@@ -8,6 +8,7 @@ TagManager:
   - EnableWall
   - Black_Brick
   - W_Brick
+  - EnableGate
   layers:
   - Default
   - TransparentFX

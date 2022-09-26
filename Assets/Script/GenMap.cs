@@ -12,10 +12,13 @@ public class GenMap : MonoBehaviour
         public bool targetBrick = false;
 
         public bool fallBrick = false;
+
+        public bool disableBrick = false;
     }
     [SerializeField] GameObject brick;
     [SerializeField] GameObject fallBrick;
     [SerializeField] GameObject targetBrick;
+
 
 
     //public Vector2 size;
@@ -23,9 +26,14 @@ public class GenMap : MonoBehaviour
     public Vector3 firtSpawPosition;
     public List<Cell> board;
     public List<int> numberOfBrick;
+    public List<GameObject> positionOfBrick;
+    public List<int> numberOfDisbaleBrick;
+
+
+    //public bool isEnableBrick = false;
 
     // Start is called before the first frame update
-    
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -35,9 +43,11 @@ public class GenMap : MonoBehaviour
     [System.Obsolete]
     void Start()
     {
-        createList(level1.instance.sizeOfLevel1,1);
-
-
+        createList(Level2.instance.sizeOfLevel2,2);
+        //for(int i = 0; i < numberOfBrick.Count; i++)
+        //{
+        //    Debug.Log(numberOfBrick[i]);
+        //}
     }
 
     // Update is called once per frame
@@ -62,12 +72,27 @@ public class GenMap : MonoBehaviour
                     {
                         GameObject newWay = Instantiate(fallBrick, new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity);
                         numberOfBrick.Add(Mathf.FloorToInt(i + j * size.x));
+                        positionOfBrick.Add(newWay);
+                        if (currenCell.disableBrick)
+                        {
+                            //EnableGate.instance.enableBrick.Add(newWay);
+                            newWay.SetActive(false);
+
+                        }
                         
                     }
                     else
                     {
                         GameObject newWay = Instantiate(brick, new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity);
                         numberOfBrick.Add(Mathf.FloorToInt(i + j * size.x));
+                        positionOfBrick.Add(newWay);
+                        if (currenCell.disableBrick)
+                        {
+                            newWay.SetActive(false);
+                            //EnableGate.instance.enableBrick.Add(newWay);
+                            positionOfBrick.Add(newWay);
+                        }
+
                     }
                     
                 }
@@ -76,6 +101,7 @@ public class GenMap : MonoBehaviour
                     GameObject newWay = Instantiate(targetBrick, new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity);
                     numberOfBrick.Add(Mathf.FloorToInt(i + j * size.x));
                 }
+                
             }
         }
         
@@ -93,15 +119,68 @@ public class GenMap : MonoBehaviour
                 board.Add(new Cell()); // add cac cell vao trong list ;
             }
         }
-        if (level == 1)
+        switch (level)
         {
-            level1.instance.selectLevel1(size);
+            case 1:
+                {
+                    level1.instance.selectLevel1(size);
+                    break;
+                }
+            case 2:
+                {
+                    Level2.instance.selectLevel2(size);
+                    //numberOfDisbaleBrick.Add(22);
+                    //numberOfDisbaleBrick.Add(18);
+                    //numberOfDisbaleBrick.Add(19);
+                    //for (int i = 0; i < numberOfDisbaleBrick.Count; i++)
+                    //{
+                    //    board[(numberOfDisbaleBrick[i])].disableBrick = true;
+                    //    Debug.Log((numberOfDisbaleBrick[i]));
+                    //}
+                    //int positionOfSwitch = Random.RandomRange(0, positionOfBrick.Count);
+
+                    break;
+                }
+
+            case 3:
+                {
+                    //
+                    break;
+                }
+            case 4:
+                {
+                    //
+                    break;
+                }
+            case 5:
+                {
+                    //
+                    break;
+                }
+            case 6:
+                {
+                    //
+                    break;
+                }
+            case 7:
+                {
+                    //
+                    break;
+                }
         }
+
+        //if (level == 1)
+        //{
+            
+        //}
+        
         
         
         board[board.Count - 1].targetBrick = true;
 
         createMaze(size);
+
+
         //createMaze(size);
     }
 
@@ -157,7 +236,7 @@ public class GenMap : MonoBehaviour
         genWay(size);
         
     }
-    List<int> CheckNeighbors(int cell,Vector2 size) //tao list check neigbor tra ve mot neighbor
+    public List<int> CheckNeighbors(int cell,Vector2 size) //tao list check neigbor tra ve mot neighbor
     {
         List<int> neighbors = new List<int>(); //list kieu int  chua neighborsx
                                                // up neighbor
@@ -188,5 +267,15 @@ public class GenMap : MonoBehaviour
         return neighbors;
 
     }
+    public void enableBrick()
+    {
+        for(int i = 0; i < positionOfBrick.Count; i++)
+        {
+            positionOfBrick[i].SetActive(true);
+
+        }
+    }
+
+
     
 }

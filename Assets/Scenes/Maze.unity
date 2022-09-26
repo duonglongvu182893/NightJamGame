@@ -312,6 +312,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 297760298064463686, guid: 3c886ea254b5d46a49d688b3f8186c8b, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 1766878895212063177, guid: 3c886ea254b5d46a49d688b3f8186c8b, type: 3}
       propertyPath: m_Constraints
       value: 0
@@ -479,6 +483,8 @@ MonoBehaviour:
   offset: {x: 3.1, y: 3.1}
   firtSpawPosition: {x: 0, y: 0, z: 0}
   numberOfBrick: 
+  positionOfBrick: []
+  numberOfDisbaleBrick: 
 --- !u!4 &1770705392
 Transform:
   m_ObjectHideFlags: 0
@@ -638,3 +644,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec945dcc4ffae4003ae86cd6a7a2db1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numberOfDisbaleBrick: 
+  sizeOfLevel2: {x: 4, y: 6}
+  switchGate: {fileID: 7081022328103088842, guid: 4eb619ce19ceb4e00b544fa91f67fb23, type: 3}

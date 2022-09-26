@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Level2 : MonoBehaviour
+public class EnableGate : MonoBehaviour
 {
-    public Vector2 sizeOfLevel2;
+
+   
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -16,5 +18,11 @@ public class Level2 : MonoBehaviour
     {
         
     }
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.transform.tag == "Player")
+        {
+            GenMap.instance.enableBrick();
+        }
+    }
 }
