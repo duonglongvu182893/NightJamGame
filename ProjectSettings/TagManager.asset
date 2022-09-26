@@ -9,6 +9,7 @@ TagManager:
   - Black_Brick
   - W_Brick
   - EnableGate
+  - Clone
   layers:
   - Default
   - TransparentFX

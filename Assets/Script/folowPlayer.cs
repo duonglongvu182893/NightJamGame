@@ -10,13 +10,15 @@ public class folowPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        distance = transform.position - player.position;
+        //transform.position = ()
+        //distance = transform.position - player.position;
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(player.position.x + distance.x, transform.position.y, player.position.z + distance.z);
+        //transform.position = new Vector3(player.position.x + distance.x, player.position.y, player.position.z + distance.z);
+        transform.position = player.transform.position;
     }
 }
