@@ -127,10 +127,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fdc95d9dfe9cf54398eecb6868b0335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _updateMode: 0
+  _updateMode: 2
   _foldoutControl: 1
   _foldoutEvents: 0
-  _duration: 1
+  _duration: 0.4
   timeMode: 1
   wrapMode: 0
   arrivedAction: 3

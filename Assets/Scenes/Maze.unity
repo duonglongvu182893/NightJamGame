@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 159332322}
   - component: {fileID: 159332321}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -676,7 +676,7 @@ GameObject:
   - component: {fileID: 744201649}
   - component: {fileID: 744201648}
   m_Layer: 0
-  m_Name: Cube (3)
+  m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -987,7 +987,7 @@ GameObject:
   - component: {fileID: 1290257797}
   - component: {fileID: 1290257796}
   m_Layer: 0
-  m_Name: Cube (2)
+  m_Name: Forward
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1198,7 +1198,14 @@ MonoBehaviour:
   w_brick: {fileID: 2100000, guid: ffcd9f2c5a4ad4cf0a60c0bbbaa6d09d, type: 2}
   b_brick: {fileID: 2100000, guid: dc5da13b1225d49818fca080ae778908, type: 2}
   Player: {fileID: 1562409851}
+  cloneOfPlayer: {fileID: 297760298064463686, guid: 3c886ea254b5d46a49d688b3f8186c8b, type: 3}
+  clone: {fileID: 2036911980}
+  left: {fileID: 159332320}
+  right: {fileID: 744201647}
+  forward: {fileID: 1290257795}
+  back: {fileID: 2031456246}
   rollSpeed: 4
+  isClone: 0
 --- !u!4 &1562409857 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4424890029771259979, guid: 3c886ea254b5d46a49d688b3f8186c8b, type: 3}
@@ -1293,10 +1300,11 @@ MonoBehaviour:
   brick: {fileID: 5025297765234173379, guid: 725f441fa1814463d85080b64746c604, type: 3}
   fallBrick: {fileID: 4473822385732760069, guid: a1acd494071ea4dcab1dbbf01d79643c, type: 3}
   targetBrick: {fileID: 8723967038131482043, guid: 70cd5c9babd9b431ba36e0045d767473, type: 3}
-  offset: {x: 3.1, y: 3.1}
+  offset: {x: 3.03, y: 3.03}
   firtSpawPosition: {x: 0, y: 0, z: 0}
   numberOfBrick: 
   positionOfBrick: []
+  brickDisable: []
   numberOfDisbaleBrick: 
 --- !u!4 &1770705392
 Transform:
@@ -1315,7 +1323,7 @@ Transform:
   - {fileID: 2104527139}
   - {fileID: 1791799562}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1791799561
 GameObject:
@@ -1326,6 +1334,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1791799562}
+  - component: {fileID: 1791799563}
   m_Layer: 0
   m_Name: Level3
   m_TagString: Untagged
@@ -1348,6 +1357,21 @@ Transform:
   m_Father: {fileID: 1770705392}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1791799563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791799561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0687de81380b04b28ba993afcbce0b7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfDisbaleBrick: 
+  sizeOfLevel3: {x: 4, y: 6}
+  switchGate: {fileID: 172262, guid: 181b7626ce58446a3ab5fcd15b58d86e, type: 3}
 --- !u!1001 &1802192777
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1516,7 +1540,7 @@ GameObject:
   - component: {fileID: 2031456248}
   - component: {fileID: 2031456247}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1625,7 +1649,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2036911977}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.5, y: 4.5, z: 4.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1635,7 +1659,7 @@ Transform:
   - {fileID: 1290257795}
   - {fileID: 744201647}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2036911979
 MonoBehaviour:

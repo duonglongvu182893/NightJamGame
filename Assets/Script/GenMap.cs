@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityExtensions.Tween;
 using UnityEngine;
 
 public class GenMap : MonoBehaviour
@@ -8,7 +9,7 @@ public class GenMap : MonoBehaviour
     public class Cell
     {
         public bool isVisited = false;
-        //public bool[] status= new bool[4];
+        
         public bool targetBrick = false;
 
         public bool fallBrick = false;
@@ -20,21 +21,16 @@ public class GenMap : MonoBehaviour
     [SerializeField] GameObject targetBrick;
 
 
-
-    //public Vector2 size;
+    
     public Vector2 offset;
     public Vector3 firtSpawPosition;
     public List<Cell> board;
     public List<int> numberOfBrick;
     public List<GameObject> positionOfBrick;
+    public List<GameObject> brickDisable;
     public List<int> numberOfDisbaleBrick;
 
-
-    //public bool isEnableBrick = false;
-
-    // Start is called before the first frame update
-
-    // Start is called before the first frame update
+    //private TweenPlayer abc;
     private void Awake()
     {
         instance = this;
@@ -43,11 +39,10 @@ public class GenMap : MonoBehaviour
     [System.Obsolete]
     void Start()
     {
-        createList(Level2.instance.sizeOfLevel2,2);
-        //for(int i = 0; i < numberOfBrick.Count; i++)
-        //{
-        //    Debug.Log(numberOfBrick[i]);
-        //}
+        createList(Level2.instance.sizeOfLevel2, 2);
+
+        //createList(Level3.instance.sizeOfLevel3, 3);
+
     }
 
     // Update is called once per frame
@@ -67,29 +62,28 @@ public class GenMap : MonoBehaviour
                 Cell currenCell = board[Mathf.FloorToInt(i + j * size.x)];
                 if (currenCell.isVisited && !currenCell.targetBrick)
                 {
-                    //int chosee = Random.RandomRange(0, 3);
                     if (currenCell.fallBrick)
                     {
                         GameObject newWay = Instantiate(fallBrick, new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity);
                         numberOfBrick.Add(Mathf.FloorToInt(i + j * size.x));
                         positionOfBrick.Add(newWay);
                         if (currenCell.disableBrick)
-                        {
-                            //EnableGate.instance.enableBrick.Add(newWay);
+                        {                            
                             newWay.SetActive(false);
+                            brickDisable.Add(newWay);
 
                         }
                         
                     }
                     else
                     {
-                        GameObject newWay = Instantiate(brick, new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity);
+                        GameObject newWay = Instantiate(brick, new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity);                       
                         numberOfBrick.Add(Mathf.FloorToInt(i + j * size.x));
                         positionOfBrick.Add(newWay);
                         if (currenCell.disableBrick)
                         {
                             newWay.SetActive(false);
-                            //EnableGate.instance.enableBrick.Add(newWay);
+                            brickDisable.Add(newWay);                          
                             positionOfBrick.Add(newWay);
                         }
 
@@ -129,22 +123,14 @@ public class GenMap : MonoBehaviour
             case 2:
                 {
                     Level2.instance.selectLevel2(size);
-                    //numberOfDisbaleBrick.Add(22);
-                    //numberOfDisbaleBrick.Add(18);
-                    //numberOfDisbaleBrick.Add(19);
-                    //for (int i = 0; i < numberOfDisbaleBrick.Count; i++)
-                    //{
-                    //    board[(numberOfDisbaleBrick[i])].disableBrick = true;
-                    //    Debug.Log((numberOfDisbaleBrick[i]));
-                    //}
-                    //int positionOfSwitch = Random.RandomRange(0, positionOfBrick.Count);
-
+                    StartCoroutine(Level2.instance.delay());
                     break;
                 }
 
             case 3:
                 {
-                    //
+                    Level3.instance.selectLevel3(size);
+                    StartCoroutine(Level3.instance.delay());
                     break;
                 }
             case 4:
@@ -168,38 +154,16 @@ public class GenMap : MonoBehaviour
                     break;
                 }
         }
-
-        //if (level == 1)
-        //{
-            
-        //}
-        
-        
         
         board[board.Count - 1].targetBrick = true;
 
         createMaze(size);
-
-
-        //createMaze(size);
     }
 
     [System.Obsolete]
     public void createMaze(Vector2 size)
     {
-        //createList(size);
-        //board = new List<Cell>(); // tao list luu tru cac cell trong ma tran 2 chieu x*y;
-        //for(int i = 0; i < size.x; i++)
-        //{
-        //    for(int j= 0; j < size.y; j++)
-        //    {
-        //        board.Add(new Cell()); // add cac cell vao trong list ;
-        //    }
-        //}
-
-
         int currentCell = 0;
-        //board[board.Count-1].targetBrick = true;
         Stack<int> path = new Stack<int>(); //khoi tao stack rong;
         int k = 0;
 
@@ -267,15 +231,26 @@ public class GenMap : MonoBehaviour
         return neighbors;
 
     }
-    public void enableBrick()
+   
+    public IEnumerator delayEnable()
     {
-        for(int i = 0; i < positionOfBrick.Count; i++)
+        for (int i = 0; i < brickDisable.Count; i++)
         {
-            positionOfBrick[i].SetActive(true);
-
+            brickDisable[i].SetActive(true);
+            brickDisable[i].GetComponent<TweenPlayer>().ForcePlayRuntime();
+            yield return new WaitForSeconds(0.4f);
+        }
+    }
+    public IEnumerator delayDiable()
+    {
+        for (int i = 0; i < brickDisable.Count; i++)
+        {
+            brickDisable[i].GetComponent<TweenPlayer>().ForcePlayBackRuntime();
+            yield return new WaitForSeconds(0.4f);
+            brickDisable[i].SetActive(false);
+ 
         }
     }
 
 
-    
 }
