@@ -15,6 +15,8 @@ public class GenMap : MonoBehaviour
         public bool fallBrick = false;
 
         public bool disableBrick = false;
+
+        public bool istouch = false;
     }
     [SerializeField] GameObject brick;
     [SerializeField] GameObject fallBrick;
@@ -39,10 +41,10 @@ public class GenMap : MonoBehaviour
     [System.Obsolete]
     void Start()
     {
-        createList(Level2.instance.sizeOfLevel2, 2);
+        //createList(Level2.instance.sizeOfLevel2, 2);
 
         //createList(Level3.instance.sizeOfLevel3, 3);
-
+        createList(Level4.instance.sizeOfLevel4, 4);
     }
 
     // Update is called once per frame
@@ -136,6 +138,9 @@ public class GenMap : MonoBehaviour
             case 4:
                 {
                     //
+                    Level4.instance.createMatrixNxN(size);
+                    Level4.instance.check(size);
+
                     break;
                 }
             case 5:
@@ -231,6 +236,28 @@ public class GenMap : MonoBehaviour
         return neighbors;
 
     }
+
+    //[System.Obsolete]
+    //public void createNxNMatrix(int size)
+    //{
+    //    List<Cell> boardMatrix = new List<Cell>();
+    //    for(int i = 0; i < size; i++)
+    //    {
+    //        for(int j = 0; j < size; j++)
+    //        {
+    //            boardMatrix.Add(new Cell());
+    //        }
+    //    }
+    //    for (int i = 0; i < size; i++)
+    //    {
+    //        for (int j = 0; j < size; j++)
+    //        {
+    //            boardMatrix[i].isVisited = true;
+    //        }
+    //    }
+    //    genWay(new Vector2(size, size));
+
+    //}
    
     public IEnumerator delayEnable()
     {
