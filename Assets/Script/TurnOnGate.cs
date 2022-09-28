@@ -32,4 +32,8 @@ public class TurnOnGate : MonoBehaviour
             StartCoroutine(GenMap.instance.delayDiable());
         }
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        //Debug.Log(new Vector3(Mathf.Round(collision.transform.position.x), Mathf.Round(collision.transform.position.y), Mathf.Round(collision.transform.position.y)));
+    }
 }

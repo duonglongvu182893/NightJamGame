@@ -23,7 +23,7 @@ public class GenMap : MonoBehaviour
     [SerializeField] GameObject targetBrick;
 
 
-    
+    //public bool[] isTouch = new bool[16];
     public Vector2 offset;
     public Vector3 firtSpawPosition;
     public List<Cell> board;
@@ -44,13 +44,20 @@ public class GenMap : MonoBehaviour
         //createList(Level2.instance.sizeOfLevel2, 2);
 
         //createList(Level3.instance.sizeOfLevel3, 3);
-        createList(Level4.instance.sizeOfLevel4, 4);
+        //createList(Level4.instance.sizeOfLevel4, 4);
+        createList(Level5.instance.sizeOfLevel5, 5);
+
+        //setTouch(0, 2, Level4.instance.sizeOfLevel4);
+        //setTouch(0, 1, Level4.instance.sizeOfLevel4);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //for(int i = 0; i <= board.Count; i++)
+        //{
+        //    isTouch[i] = board[i].istouch;
+        //}
     }
 
     [System.Obsolete]
@@ -139,13 +146,14 @@ public class GenMap : MonoBehaviour
                 {
                     //
                     Level4.instance.createMatrixNxN(size);
-                    Level4.instance.check(size);
+                    //Level4.instance.check(size);
 
                     break;
                 }
             case 5:
                 {
                     //
+                    Level5.instance.createMatrixNxN(size);
                     break;
                 }
             case 6:
@@ -237,28 +245,12 @@ public class GenMap : MonoBehaviour
 
     }
 
-    //[System.Obsolete]
-    //public void createNxNMatrix(int size)
-    //{
-    //    List<Cell> boardMatrix = new List<Cell>();
-    //    for(int i = 0; i < size; i++)
-    //    {
-    //        for(int j = 0; j < size; j++)
-    //        {
-    //            boardMatrix.Add(new Cell());
-    //        }
-    //    }
-    //    for (int i = 0; i < size; i++)
-    //    {
-    //        for (int j = 0; j < size; j++)
-    //        {
-    //            boardMatrix[i].isVisited = true;
-    //        }
-    //    }
-    //    genWay(new Vector2(size, size));
+    public void setTouch(int i, int j, Vector2 size)
+    {
+        board[Mathf.FloorToInt(i + j * size.x)].istouch = true;
+        Debug.Log(i + " " + j);
+    }
 
-    //}
-   
     public IEnumerator delayEnable()
     {
         for (int i = 0; i < brickDisable.Count; i++)
