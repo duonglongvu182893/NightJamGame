@@ -11,10 +11,12 @@ public class Level4 : MonoBehaviour
 
     public int[] countRow = new int[4];
     public int[] countColumn = new int[4];
-    public int[] countMainDiagonal = new int[4];
+    public int[] countMainDownDiagonal = new int[4];
+    public int[] countMainUpDiagonal = new int[4];
     public bool[] row = new bool[4];
     public bool[] column = new bool[4];
-    public bool[] mainDiagonal = new bool[4];
+    public bool[] mainDownDiagonal = new bool[4];
+    public bool[] mainUpDiagonal = new bool[4];
 
 
     public int sum = 0;
@@ -29,7 +31,8 @@ public class Level4 : MonoBehaviour
         {
             countColumn[i] = 0;
             countRow[i] = 0;
-            countMainDiagonal[i] = 0;
+            countMainDownDiagonal[i] = 0;
+            countMainUpDiagonal[i] = 0;
         }
     }
 
@@ -47,8 +50,8 @@ public class Level4 : MonoBehaviour
                 GenMap.instance.board[Mathf.FloorToInt(i + j * size.x)].isVisited = true;
             }
         }
-        GenMap.instance.board[Mathf.FloorToInt(0 + 0 * size.x)].istouch = true;
-        GenMap.instance.board[Mathf.FloorToInt(1 + 0 * size.x)].istouch = true;
+        GenMap.instance.board[Mathf.FloorToInt(0 + 1 * size.x)].istouch = true;
+        GenMap.instance.board[Mathf.FloorToInt(1 + 2 * size.x)].istouch = true;
     }
     public void check(Vector2 size)
     {
@@ -73,9 +76,9 @@ public class Level4 : MonoBehaviour
             }
         }
         //check hang j khong doi
-        for(int i = 0; i < size.y; i++)
+        for (int i = 0; i < size.y; i++)
         {
-            for(int j = 0; j < size.x; j++)
+            for (int j = 0; j < size.x; j++)
             {
                 if (GenMap.instance.board[(Mathf.FloorToInt(j + i * size.x))].istouch)
                 {
@@ -83,23 +86,61 @@ public class Level4 : MonoBehaviour
                 }
             }
         }
-        for(int i = 0; i < 4; i++)
+        for (int i = 0; i < 4; i++)
         {
             if (countColumn[i] > 1)
             {
                 column[i] = true;
             }
         }
-        //check duong cheo chinh
-        for(int i = 0; i < size.x; i++)
+
+        //check duong cheo chinh;
+        //phia duoi duong cheo chinh
+        for (int i = 0; i < size.x; i++)
         {
-            if(GenMap.instance.board[(Mathf.FloorToInt(i + i * size.x))].istouch)
+            for (int j = 0; j < size.y; j++)
             {
-                countMainDiagonal[i] = countMainDiagonal[i] + 1;
+                if (Mathf.FloorToInt(j - i) >= 0)
+                {
+                    if (GenMap.instance.board[Mathf.FloorToInt(j + (j - i) * size.x)].istouch)
+                    {
+                        countMainDownDiagonal[i] += 1;
+                    }
+                }
+                
+            }
+        }
+        for (int i = 0; i < 4; i++)
+        {
+            if (countMainDownDiagonal[i] > 1)
+            {
+                mainDownDiagonal[i] = true;
+            }
+        }
+        //phia tren duong cheo chinh
+        for (int i = 0; i < size.x; i++)
+        {
+            for (int j = 1; j < size.y; j++)
+            {
+                if (Mathf.FloorToInt(i+j) <= 3)
+                {
+                    if (GenMap.instance.board[Mathf.FloorToInt(j + (j + i) * size.x)].istouch)
+                    {
+                        countMainUpDiagonal[i] += 1;
+                    }
+                }
+
+            }
+        }
+        for (int i = 0; i < 4; i++)
+        {
+            if (countMainUpDiagonal[i] > 1)
+            {
+                mainUpDiagonal[i] = true;
             }
         }
     }
-    
+
     public void checkWin()
     {
         for (int i = 0; i < 4; i++)
@@ -114,9 +155,14 @@ public class Level4 : MonoBehaviour
                 Debug.Log("vi pham o cot" + i);
                 break;
             }
-            if (mainDiagonal[i])
+            if (mainDownDiagonal[i])
             {
-                Debug.Log("vi pham o duong cheo thu" + i);
+                Debug.Log("vi pham o duong cheo tren thu" + i);
+                break;
+            }
+            if (mainUpDiagonal[i])
+            {
+                Debug.Log("vi pham o duong duoi cheo thu" + i);
                 break;
             }
             if (!row[i])
@@ -129,9 +175,13 @@ public class Level4 : MonoBehaviour
                 Debug.Log("hop le o cot" + i);
                
             }
-            if (!mainDiagonal[i])
+            if (!mainDownDiagonal[i])
             {
-                Debug.Log("duong cheo " + i + " hop le");
+                Debug.Log("duong cheo duoi " + i + " hop le");
+            }
+            if (!mainUpDiagonal[i])
+            {
+                Debug.Log("duong cheo tren " + i + " hop le");
             }
         }
     }
