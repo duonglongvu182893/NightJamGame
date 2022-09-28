@@ -13,10 +13,16 @@ public class Level4 : MonoBehaviour
     public int[] countColumn = new int[4];
     public int[] countMainDownDiagonal = new int[4];
     public int[] countMainUpDiagonal = new int[4];
+    public int[] countDownDiagonal = new int[4];
+    public int[] countUpDiagonal = new int[4];
+
+
     public bool[] row = new bool[4];
     public bool[] column = new bool[4];
     public bool[] mainDownDiagonal = new bool[4];
     public bool[] mainUpDiagonal = new bool[4];
+    public bool[] downDiagonal = new bool[4];
+    public bool[] upDiagonal = new bool[4];
 
 
     public int sum = 0;
@@ -33,6 +39,8 @@ public class Level4 : MonoBehaviour
             countRow[i] = 0;
             countMainDownDiagonal[i] = 0;
             countMainUpDiagonal[i] = 0;
+            countDownDiagonal[i] = 0;
+            countUpDiagonal[i] = 0;
         }
     }
 
@@ -50,8 +58,8 @@ public class Level4 : MonoBehaviour
                 GenMap.instance.board[Mathf.FloorToInt(i + j * size.x)].isVisited = true;
             }
         }
-        GenMap.instance.board[Mathf.FloorToInt(0 + 1 * size.x)].istouch = true;
-        GenMap.instance.board[Mathf.FloorToInt(1 + 2 * size.x)].istouch = true;
+        //GenMap.instance.board[Mathf.FloorToInt(3 + 1 * size.x)].istouch = true;
+        //GenMap.instance.board[Mathf.FloorToInt(2 + 2 * size.x)].istouch = true;
     }
     public void check(Vector2 size)
     {
@@ -94,7 +102,7 @@ public class Level4 : MonoBehaviour
             }
         }
 
-        //check duong cheo chinh;
+        //CHECK DUONG CHEO CHINH
         //phia duoi duong cheo chinh
         for (int i = 0; i < size.x; i++)
         {
@@ -120,9 +128,9 @@ public class Level4 : MonoBehaviour
         //phia tren duong cheo chinh
         for (int i = 0; i < size.x; i++)
         {
-            for (int j = 1; j < size.y; j++)
+            for (int j = 0; j < size.y; j++)
             {
-                if (Mathf.FloorToInt(i+j) <= 3)
+                if (Mathf.FloorToInt(i+j) < size.x)
                 {
                     if (GenMap.instance.board[Mathf.FloorToInt(j + (j + i) * size.x)].istouch)
                     {
@@ -137,6 +145,56 @@ public class Level4 : MonoBehaviour
             if (countMainUpDiagonal[i] > 1)
             {
                 mainUpDiagonal[i] = true;
+            }
+        }
+
+        //CHECK DUONG CHEO PHU
+        //phia duoi duong cheo phu
+        for (int i = 3; i >= 0; i--)
+        {
+            int a = i;
+            for (int j = 0; j <= i; j++)
+            {
+                if (GenMap.instance.board[Mathf.FloorToInt(a + j * size.x)].istouch)
+                {
+                    countDownDiagonal[i] += 1;
+                }
+                a--;
+            }
+           
+        }
+
+        for (int i = 0; i < 4; i++)
+        {
+            if (countDownDiagonal[i] > 1)
+            {
+                downDiagonal[i] = true;
+            }
+        }
+        //phia tren duong cheo phu
+        int b = 0;
+        for (int i = 3; i >= 0; i--)
+        {
+            int a = 3;
+           
+            for (int j = 1; j <= i; j++)
+            {
+                if (GenMap.instance.board[Mathf.FloorToInt(a + (j + b) * size.x)].istouch)
+                {
+                    countUpDiagonal[i] += 1;
+                }
+                //int x = j + b;
+                //Debug.Log(a + " " + x);
+                a--;
+                
+            }
+            b = b + 1;
+        }
+        for (int i = 0; i < 4; i++)
+        {
+            if (countUpDiagonal[i] > 1)
+            {
+                upDiagonal[i] = true;
             }
         }
     }
@@ -165,23 +223,41 @@ public class Level4 : MonoBehaviour
                 Debug.Log("vi pham o duong duoi cheo thu" + i);
                 break;
             }
+            if (downDiagonal[i])
+            {
+                Debug.Log("vi pham o duong cheo phu thu " + i);
+                break;
+            }
+            if (upDiagonal[i])
+            {
+                Debug.Log("vi pham o duong cheo phu thu " + i +"phia tren");
+                break;
+            }
             if (!row[i])
             {
-                Debug.Log("hop le o hang" + i);
+                //Debug.Log("hop le o hang" + i);
                 
             }
             if (!column[i])
             {
-                Debug.Log("hop le o cot" + i);
+                //Debug.Log("hop le o cot" + i);
                
             }
             if (!mainDownDiagonal[i])
             {
-                Debug.Log("duong cheo duoi " + i + " hop le");
+                //Debug.Log("duong cheo duoi " + i + " hop le");
             }
             if (!mainUpDiagonal[i])
             {
-                Debug.Log("duong cheo tren " + i + " hop le");
+                //Debug.Log("duong cheo tren " + i + " hop le");
+            }
+            if (!downDiagonal[i])
+            {
+                //Debug.Log("duong cheo phu duoi " + i + " hop le");
+            }
+            if (!upDiagonal[i])
+            {
+                Debug.Log("duong cheo phu thu " + i + "phia tren hop le");
             }
         }
     }
