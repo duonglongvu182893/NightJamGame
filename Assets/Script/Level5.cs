@@ -47,7 +47,10 @@ public class Level5 : MonoBehaviour
             countUpDiagonal[i] = 0;
         }
     }
-
+    private void OnEnable()
+    {
+        player.transform.position = new Vector3(0, 3, 0);
+    }
     // Update is called once per frame
     void Update()
     {
