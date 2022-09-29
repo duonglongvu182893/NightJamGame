@@ -21,21 +21,32 @@ public class GenMap : MonoBehaviour
     [SerializeField] GameObject brick;
     [SerializeField] GameObject fallBrick;
     [SerializeField] GameObject targetBrick;
+    [SerializeField] GameObject saveTarget;
 
 
     //public bool[] isTouch = new bool[16];
     public Vector2 offset;
-    public Vector3 firtSpawPosition;
+    public Transform firtSpawPosition;
     public List<Cell> board;
     public List<int> numberOfBrick;
     public List<GameObject> positionOfBrick;
     public List<GameObject> brickDisable;
+    public List<GameObject> tool;
     public List<int> numberOfDisbaleBrick;
+    
 
     //private TweenPlayer abc;
     private void Awake()
     {
-        instance = this;
+        //instance = this;
+        //if (instance != null) { }
+
+        ////đã có instance -> hủy object mới tạo
+        //else
+        //{
+            instance = this;
+            //DontDestroyOnLoad(gameObject);
+        //}
     }
 
     [System.Obsolete]
@@ -63,7 +74,7 @@ public class GenMap : MonoBehaviour
     [System.Obsolete]
     public void genWay(Vector2 size)
     {
-        firtSpawPosition = new Vector3(0, 0, 0);
+        //firtSpawPosition;
         for (int i = 0; i < size.x; i++)
         {
             for (int j = 0; j < size.y; j++)
@@ -103,6 +114,7 @@ public class GenMap : MonoBehaviour
                 {
                     GameObject newWay = Instantiate(targetBrick, new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity);
                     numberOfBrick.Add(Mathf.FloorToInt(i + j * size.x));
+                    saveTarget = newWay;
                 }
 
             }
@@ -264,7 +276,7 @@ public class GenMap : MonoBehaviour
         {
             brickDisable[i].SetActive(true);
             brickDisable[i].GetComponent<TweenPlayer>().ForcePlayRuntime();
-            yield return new WaitForSeconds(0.4f);
+            yield return new WaitForSeconds(0.2f);
         }
     }
     public IEnumerator delayDiable()
@@ -272,11 +284,11 @@ public class GenMap : MonoBehaviour
         for (int i = 0; i < brickDisable.Count; i++)
         {
             brickDisable[i].GetComponent<TweenPlayer>().ForcePlayBackRuntime();
-            yield return new WaitForSeconds(0.4f);
+            yield return new WaitForSeconds(0.2f);
             brickDisable[i].SetActive(false);
 
         }
-        brickDisable.Clear();
+        //brickDisable.Clear();
     }
     public IEnumerator delayMap()
     {
@@ -284,7 +296,7 @@ public class GenMap : MonoBehaviour
         for (int i = 0; i < positionOfBrick.Count; i++)
         {
             positionOfBrick[i].GetComponent<TweenPlayer>().ForcePlayBackRuntime();
-            yield return new WaitForSeconds(0.4f);
+            yield return new WaitForSeconds(0.1f);
             positionOfBrick[i].SetActive(false);
 
         }
@@ -293,4 +305,27 @@ public class GenMap : MonoBehaviour
 
 
     }
+    public void DestroyMap()
+    {
+        for (int i = 0; i < positionOfBrick.Count; i++)
+        {
+
+                Destroy(positionOfBrick[i]);
+                Destroy(saveTarget);
+            
+            
+        }
+        positionOfBrick.Clear();
+    }
+    public void DestroyTool()
+    {
+        for (int i = 0; i < tool.Count; i++)
+        {
+
+            Destroy(tool[i]);
+            
+        }
+        tool.Clear();
+    }
+
 }

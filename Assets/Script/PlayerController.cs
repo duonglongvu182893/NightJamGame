@@ -22,19 +22,48 @@ public class PlayerController : MonoBehaviour
 
 
     public bool isClone = false;
-    private bool isMoving = false;
+    public bool isMoving = false;
 
 
     private void Awake()
     {
-        instance = this;
-    }
+        //if (instance != null)
+        //{
 
+        //}
+
+        ////đã có instance -> hủy object mới tạo
+        //else
+        //{
+        //    instance = this;
+        //    DontDestroyOnLoad(gameObject);
+        //}
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (instance != this)
+        {
+            //Destroy(gameObject);
+            
+        }
+           
+
+    }
+    protected void OnDestroy()
+    {
+        //Nhớ giải phóng vì đây là static
+        if (instance == this)
+        {
+            instance = null;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
 
-        transform.position = GenMap.instance.firtSpawPosition + new Vector3(0, 3, 0);
+        //transform.position = GenMap.instance.firtSpawPosition.position + new Vector3(0, 3, 0);
     }
 
     // Update is called once per frame
@@ -178,6 +207,14 @@ public class PlayerController : MonoBehaviour
         GameObject clonePlayer = Instantiate(cloneOfPlayer, position.position, Quaternion.identity);
         cloneBrick.Add(clonePlayer);
     }
+    public void deleteClone()
+    {
+        for (int i = 0; i < cloneBrick.Count; i++)
+        {
+            Destroy(cloneBrick[i]);
+        }
+        cloneBrick.Clear();
+    }
     public IEnumerator destroyClone()
     {
         for(int i = 0; i < cloneBrick.Count; i++)
@@ -187,5 +224,18 @@ public class PlayerController : MonoBehaviour
             Destroy(cloneBrick[i]);
         }
         cloneBrick.Clear();
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.transform.tag == "Finish")
+        {
+            for (int i = 0; i < cloneBrick.Count; i++)
+            {
+                cloneBrick[i].GetComponent<TweenPlayer>().ForcePlayBackRuntime();
+                //yield return new WaitForSeconds(0.4f);
+                Destroy(cloneBrick[i]);
+            }
+        }
+        
     }
 }

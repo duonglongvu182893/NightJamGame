@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class level1 : MonoBehaviour
 {
-
+    public GameObject player;
     public static level1 instance;
     public Vector2 sizeOfLevel1;
 
@@ -19,12 +19,8 @@ public class level1 : MonoBehaviour
 
     void Start()
     {
-        //selectLevel1();
-        //GenMap.instance.createMaze(sizeOfLevel1);
-        //for (int i = 0; i < GenMap.instance.numberOfBrick.Count; i++)
-        //{
-        //    Debug.Log(GenMap.instance.numberOfBrick[i]);
-        //}
+        player.transform.position = new Vector3(0, 3, 0);
+        StartCoroutine(delay());
     }
 
     // Update is called once per frame
@@ -44,5 +40,10 @@ public class level1 : MonoBehaviour
                 GenMap.instance.board[i].fallBrick = true;
             }
         }
+    }
+    IEnumerator delay()
+    {
+        yield return new WaitForSeconds(1f);
+        winCheck.instance.checkWin();
     }
 }

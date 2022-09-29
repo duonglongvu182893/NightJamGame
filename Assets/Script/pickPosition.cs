@@ -26,7 +26,15 @@ public class pickPosition : MonoBehaviour
         {
             j = Mathf.FloorToInt(Mathf.Round(transform.position.z)) / 3;
         }
+        //if(PlayerWhenStart.instance.level == 4)
+        //{
+        //    GenMap.instance.setTouch(i, j, Level4.instance.sizeOfLevel4);
+        //}
+        //else if (PlayerWhenStart.instance.level == 5)
+        //{
         GenMap.instance.setTouch(i, j, Level5.instance.sizeOfLevel5);
+        //}
+        
         transform.position = new Vector3(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y), Mathf.Round(transform.position.z));
     }
 

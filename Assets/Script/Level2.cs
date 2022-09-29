@@ -6,6 +6,7 @@ public class Level2 : MonoBehaviour
 {
     public static Level2 instance;
 
+    public GameObject player;
     public List<int> numberOfDisbaleBrick ;
     public Vector2 sizeOfLevel2;
     public GameObject switchGate;
@@ -16,7 +17,8 @@ public class Level2 : MonoBehaviour
     }
     void Start()
     {
-
+        player.transform.position = new Vector3(0, 3, 0);
+        StartCoroutine(delayWin());
     }
 
     [System.Obsolete]
@@ -52,6 +54,7 @@ public class Level2 : MonoBehaviour
     void cloneSwitch(Vector3 position)
     {
         GameObject switchClone = Instantiate(switchGate, new Vector3(position.x, 1.5f, position.z), Quaternion.identity);
+        GenMap.instance.tool.Add(switchClone);
     }
 
     [System.Obsolete]
@@ -61,6 +64,11 @@ public class Level2 : MonoBehaviour
         int positionOfSwitch;
         positionOfSwitch = Random.RandomRange(1, GenMap.instance.positionOfBrick.Count/2);
         cloneSwitch(GenMap.instance.positionOfBrick[positionOfSwitch].transform.position);
+    }
+    IEnumerator delayWin()
+    {
+        yield return new WaitForSeconds(1f);
+        winCheck.instance.checkWin();
     }
 }
 

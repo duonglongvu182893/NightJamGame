@@ -7,7 +7,7 @@ public class Level5 : MonoBehaviour
 
     public static Level5 instance;
     public Vector2 sizeOfLevel5;
-
+    public GameObject player;
 
     public int[] countRow = new int[5];
     public int[] countColumn = new int[5];
@@ -35,6 +35,8 @@ public class Level5 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player.GetComponent<PlayerController>();
+        player.transform.position = new Vector3(0, 3, 0);
         for (int i = 0; i < 5; i++)
         {
             countColumn[i] = 0;
@@ -284,6 +286,8 @@ public class Level5 : MonoBehaviour
         }
         
     }
+
+    [System.Obsolete]
     IEnumerator delay()
     {
         yield return new WaitForSeconds(0.3f);
@@ -291,6 +295,9 @@ public class Level5 : MonoBehaviour
         {
             //StartCoroutine(PlayerController.instance.destroyClone());
             StartCoroutine(GenMap.instance.delayMap());
+            PlayerWhenStart.instance.level++;
+            GenMap.instance.DestroyTool();
+            StartCoroutine(PlayerWhenStart.instance.destroyOldPlatform(PlayerWhenStart.instance.level));
 
         }
     }

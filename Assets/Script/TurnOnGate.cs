@@ -21,15 +21,19 @@ public class TurnOnGate : MonoBehaviour
         if (other.transform.tag == "Player" || other.transform.tag == "Clone")
         {
             //GenMap.instance.enableBrick();
-            StartCoroutine(GenMap.instance.delayEnable());
+            //StartCoroutine(GenMap.instance.delayEnable());
+            Level3.instance.setActiveBrick(1);
+
+            winCheck.instance.checkWin();
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.transform.tag == "Player" || other.transform.tag == "Clone")
         {
-            //GenMap.instance.disableBrick();
-            StartCoroutine(GenMap.instance.delayDiable());
+            StartCoroutine( GenMap.instance.delayDiable());
+            Level3.instance.setActiveBrick(0);
+            winCheck.instance.disbaleWin();
         }
     }
     private void OnCollisionEnter(Collision collision)

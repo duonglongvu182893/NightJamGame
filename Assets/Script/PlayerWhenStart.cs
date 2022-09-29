@@ -17,6 +17,7 @@ public class PlayerWhenStart : MonoBehaviour
 
     public Vector2 levelNumber;
 
+    public GameObject[] levelOj;
     public Level[] levelPlayer;
 
     [System.Obsolete]
@@ -36,7 +37,32 @@ public class PlayerWhenStart : MonoBehaviour
     public void setLevel(int level)
     {
         int a = level - 1;
+        for(int i= 0; i < levelOj.Length; i++)
+        {
+            if (i == a)
+            {
+                levelOj[i].SetActive(true);
+            }
+            else
+            {
+                levelOj[i].SetActive(false);
+            }
+        }
         GenMap.instance.createList(levelPlayer[a].size, levelPlayer[a].numberOfLevel);
         numberOfClone = levelPlayer[a].numberBrickCanClone;
+    }
+
+    [System.Obsolete]
+    public IEnumerator destroyOldPlatform(int level)
+    {
+        yield return new WaitForSeconds(0.5f);
+        //transform.position = new Vector3(0, 3, 0);
+        GenMap.instance.DestroyMap();
+        setLevel(level);
+        //PlayerController.instance.isMoving = true;
+        //yield return new WaitForSeconds(2f);
+        //PlayerController.instance.isMoving = false;
+
+
     }
 }
