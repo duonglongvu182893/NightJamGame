@@ -9,7 +9,7 @@ public class GenMap : MonoBehaviour
     public class Cell
     {
         public bool isVisited = false;
-        
+
         public bool targetBrick = false;
 
         public bool fallBrick = false;
@@ -64,9 +64,9 @@ public class GenMap : MonoBehaviour
     public void genWay(Vector2 size)
     {
         firtSpawPosition = new Vector3(0, 0, 0);
-        for(int i = 0; i < size.x; i++)
+        for (int i = 0; i < size.x; i++)
         {
-            for(int j = 0; j < size.y; j++)
+            for (int j = 0; j < size.y; j++)
             {
                 Cell currenCell = board[Mathf.FloorToInt(i + j * size.x)];
                 if (currenCell.isVisited && !currenCell.targetBrick)
@@ -77,41 +77,41 @@ public class GenMap : MonoBehaviour
                         numberOfBrick.Add(Mathf.FloorToInt(i + j * size.x));
                         positionOfBrick.Add(newWay);
                         if (currenCell.disableBrick)
-                        {                            
+                        {
                             newWay.SetActive(false);
                             brickDisable.Add(newWay);
 
                         }
-                        
+
                     }
                     else
                     {
-                        GameObject newWay = Instantiate(brick, new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity);                       
+                        GameObject newWay = Instantiate(brick, new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity);
                         numberOfBrick.Add(Mathf.FloorToInt(i + j * size.x));
                         positionOfBrick.Add(newWay);
                         if (currenCell.disableBrick)
                         {
                             newWay.SetActive(false);
-                            brickDisable.Add(newWay);                          
+                            brickDisable.Add(newWay);
                             positionOfBrick.Add(newWay);
                         }
 
                     }
-                    
+
                 }
                 else if (currenCell.isVisited && currenCell.targetBrick)
                 {
                     GameObject newWay = Instantiate(targetBrick, new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity);
                     numberOfBrick.Add(Mathf.FloorToInt(i + j * size.x));
                 }
-                
+
             }
         }
-        
+
     }
 
     [System.Obsolete]
-    public void createList(Vector2 size,int level)
+    public void createList(Vector2 size, int level)
     {
 
         board = new List<Cell>(); // tao list luu tru cac cell trong ma tran 2 chieu x*y;
@@ -167,7 +167,7 @@ public class GenMap : MonoBehaviour
                     break;
                 }
         }
-        
+
         board[board.Count - 1].targetBrick = true;
 
         createMaze(size);
@@ -188,7 +188,7 @@ public class GenMap : MonoBehaviour
             {
                 break;
             }
-            List<int> neighbor= CheckNeighbors(currentCell,size);
+            List<int> neighbor = CheckNeighbors(currentCell, size);
 
             if (neighbor.Count == 0)
             {
@@ -204,22 +204,22 @@ public class GenMap : MonoBehaviour
             else
             {
 
-                path.Push(currentCell);  
+                path.Push(currentCell);
                 int newCell = neighbor[Random.RandomRange(0, neighbor.Count)];
                 currentCell = newCell;
 
             }
         }
         genWay(size);
-        
+
     }
-    public List<int> CheckNeighbors(int cell,Vector2 size) //tao list check neigbor tra ve mot neighbor
+    public List<int> CheckNeighbors(int cell, Vector2 size) //tao list check neigbor tra ve mot neighbor
     {
         List<int> neighbors = new List<int>(); //list kieu int  chua neighborsx
                                                // up neighbor
 
 
-        
+
         if (cell - size.x >= 0 && !board[Mathf.FloorToInt(cell - size.x)].isVisited)
         {
             neighbors.Add(Mathf.FloorToInt(cell - size.x));
@@ -250,6 +250,13 @@ public class GenMap : MonoBehaviour
         board[Mathf.FloorToInt(i + j * size.x)].istouch = true;
         Debug.Log(i + " " + j);
     }
+    public void resetTouch()
+    {
+        for (int i = 0; i < board.Count; i++)
+        {
+            board[i].istouch = false;
+        }
+    }
 
     public IEnumerator delayEnable()
     {
@@ -267,9 +274,23 @@ public class GenMap : MonoBehaviour
             brickDisable[i].GetComponent<TweenPlayer>().ForcePlayBackRuntime();
             yield return new WaitForSeconds(0.4f);
             brickDisable[i].SetActive(false);
- 
+
         }
+        brickDisable.Clear();
     }
+    public IEnumerator delayMap()
+    {
+        StartCoroutine(PlayerController.instance.destroyClone());
+        for (int i = 0; i < positionOfBrick.Count; i++)
+        {
+            positionOfBrick[i].GetComponent<TweenPlayer>().ForcePlayBackRuntime();
+            yield return new WaitForSeconds(0.4f);
+            positionOfBrick[i].SetActive(false);
+
+        }
+
+        positionOfBrick.Clear();
 
 
+    }
 }

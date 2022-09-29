@@ -17,10 +17,12 @@ public class PlayerWhenStart : MonoBehaviour
 
     public Vector2 levelNumber;
 
+    public Level[] levelPlayer;
+
     [System.Obsolete]
     private void Start()
     {
-        GenMap.instance.createList(levelNumber, level);
+        setLevel(level);
     }
 
     public void setNumber(int levelA, Vector2 numberLevel, int numberOfcloneBrick)
@@ -28,5 +30,13 @@ public class PlayerWhenStart : MonoBehaviour
         level = levelA;
         levelNumber = numberLevel;
         numberOfClone = numberOfcloneBrick;
+    }
+
+    [System.Obsolete]
+    public void setLevel(int level)
+    {
+        int a = level - 1;
+        GenMap.instance.createList(levelPlayer[a].size, levelPlayer[a].numberOfLevel);
+        numberOfClone = levelPlayer[a].numberBrickCanClone;
     }
 }

@@ -16,6 +16,7 @@ public class Level5 : MonoBehaviour
     public int[] countDownDiagonal = new int[5];
     public int[] countUpDiagonal = new int[5];
 
+     
 
     public bool[] row = new bool[5];
     public bool[] column = new bool[5];
@@ -25,7 +26,8 @@ public class Level5 : MonoBehaviour
     public bool[] upDiagonal = new bool[5];
 
 
-    public int sum = 0;
+
+    public bool r, c, mDD, mUD, dD, uD;
     private void Awake()
     {
         instance = this;
@@ -49,7 +51,7 @@ public class Level5 : MonoBehaviour
     {
         //GenMap.instance.board[Mathf.FloorToInt(3 + 1 * sizeOfLevel4.x)].istouch = true;
         //GenMap.instance.board[Mathf.FloorToInt(2 + 2 * sizeOfLevel4.x)].istouch = true;
-
+        checkWin();
     }
     public void createMatrixNxN(Vector2 size)
     {
@@ -207,67 +209,58 @@ public class Level5 : MonoBehaviour
         check(sizeOfLevel5);
         for (int i = 0; i < 5; i++)
         {
-            if (row[i])
+            if (row[i] ) 
             {
                 Debug.Log("vi pham o hang" + i);
+                resetLevel5();
                 break;
             }
-            if (column[i])
+            if (column[i] )
             {
                 Debug.Log("vi pham o cot" + i);
+                resetLevel5();
                 break;
             }
             if (mainDownDiagonal[i])
             {
                 Debug.Log("vi pham o duong cheo tren thu" + i);
+                resetLevel5();
                 break;
             }
             if (mainUpDiagonal[i])
             {
                 Debug.Log("vi pham o duong duoi cheo thu" + i);
+                resetLevel5();
                 break;
             }
             if (downDiagonal[i])
             {
                 Debug.Log("vi pham o duong cheo phu thu " + i);
+                resetLevel5();
                 break;
             }
             if (upDiagonal[i])
             {
                 Debug.Log("vi pham o duong cheo phu thu " + i + "phia tren");
+                resetLevel5();
                 break;
             }
-            if (!row[i])
-            {
-
-
-            }
-            if (!column[i])
-            {
-
-
-            }
-            if (!mainDownDiagonal[i])
-            {
-
-            }
-            if (!mainUpDiagonal[i])
-            {
-
-            }
-            if (!downDiagonal[i])
-            {
-
-            }
-            if (!upDiagonal[i])
-            {
-
-            }
+            r = r || row[i];
+            c = c || column[i];
+            mDD = mDD || mainDownDiagonal[i];
+            mUD = mUD || mainUpDiagonal[i];
+            uD = uD || upDiagonal[i];
+            dD = dD || downDiagonal[i];
 
         }
-        //ResetValue();
-        
+        //if (PlayerWhenStart.instance.numberOfClone == 0&&(!r||!c||!mUD||!mDD||!uD||!dD))
+        //{
+        //    StartCoroutine(PlayerController.instance.destroyClone());
+        //    StartCoroutine(GenMap.instance.delayMap());
 
+        //}
+        StartCoroutine(delay());
+        ResetValue();
     }
     public void ResetValue()
     {
@@ -280,5 +273,31 @@ public class Level5 : MonoBehaviour
             countDownDiagonal[i] = 0;
             countUpDiagonal[i] = 0;
         }
+        for(int i = 0; i < 5; i++)
+        {
+            column[i] = false;
+            row[i] = false;
+            mainDownDiagonal[i] = false;
+            mainUpDiagonal[i] = false;
+            downDiagonal[i] = false;
+            upDiagonal[i] = false;
+        }
+        
+    }
+    IEnumerator delay()
+    {
+        yield return new WaitForSeconds(0.3f);
+        if (PlayerWhenStart.instance.numberOfClone <= 0 && (!r || !c || !mUD || !mDD || !uD || !dD))
+        {
+            //StartCoroutine(PlayerController.instance.destroyClone());
+            StartCoroutine(GenMap.instance.delayMap());
+
+        }
+    }
+    public void resetLevel5()
+    {
+        StartCoroutine(PlayerController.instance.destroyClone());
+        GenMap.instance.resetTouch();
+        PlayerWhenStart.instance.numberOfClone = 5;
     }
 }

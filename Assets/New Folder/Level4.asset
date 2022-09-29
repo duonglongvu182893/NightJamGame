@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19ec1c371492f4de6948777392161954, type: 3}
   m_Name: Level4
   m_EditorClassIdentifier: 
-  numberOfLevel: 0
-  des: 
-  size: {x: 0, y: 0}
-  numberBrickCanClone: 0
+  numberOfLevel: 4
+  des: 'Use clone to soft the clone cube '
+  size: {x: 4, y: 4}
+  numberBrickCanClone: 4

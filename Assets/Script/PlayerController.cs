@@ -5,6 +5,8 @@ using UnityExtensions.Tween;
 
 public class PlayerController : MonoBehaviour
 {
+
+    public static PlayerController instance;
     [SerializeField] Material w_brick;
     [SerializeField] Material b_brick;
     [SerializeField] GameObject Player;
@@ -16,11 +18,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform back;
     [SerializeField] private float rollSpeed = 3;
 
+    public List<GameObject> cloneBrick = new List<GameObject>();
+
 
     public bool isClone = false;
     private bool isMoving = false;
 
 
+    private void Awake()
+    {
+        instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -55,6 +63,7 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Clone left");
                 cloneBrickPlayer(left);
                 PlayerWhenStart.instance.numberOfClone--;
+                
                 //rollDirection(Vector3.left);
             }
             if (Input.GetKeyDown(KeyCode.D))
@@ -166,7 +175,17 @@ public class PlayerController : MonoBehaviour
 
     void cloneBrickPlayer(Transform position)
     {
-        GameObject clonePlayer = Instantiate(cloneOfPlayer, position.position, Quaternion.identity);      
+        GameObject clonePlayer = Instantiate(cloneOfPlayer, position.position, Quaternion.identity);
+        cloneBrick.Add(clonePlayer);
     }
-    
+    public IEnumerator destroyClone()
+    {
+        for(int i = 0; i < cloneBrick.Count; i++)
+        {
+            cloneBrick[i].GetComponent<TweenPlayer>().ForcePlayBackRuntime();
+            yield return new WaitForSeconds(0.4f);
+            Destroy(cloneBrick[i]);
+        }
+        cloneBrick.Clear();
+    }
 }

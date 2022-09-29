@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19ec1c371492f4de6948777392161954, type: 3}
   m_Name: Level3
   m_EditorClassIdentifier: 
-  numberOfLevel: 0
-  des: 
-  size: {x: 0, y: 0}
-  numberBrickCanClone: 0
+  numberOfLevel: 3
+  des: Use Clone button to create a cube can hold way
+  size: {x: 4, y: 6}
+  numberBrickCanClone: 1

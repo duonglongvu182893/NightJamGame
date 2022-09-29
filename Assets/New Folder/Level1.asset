@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19ec1c371492f4de6948777392161954, type: 3}
   m_Name: Level1
   m_EditorClassIdentifier: 
-  numberOfLevel: 0
-  des: 
-  size: {x: 0, y: 0}
+  numberOfLevel: 1
+  des: Move To Target
+  size: {x: 3, y: 6}
   numberBrickCanClone: 0

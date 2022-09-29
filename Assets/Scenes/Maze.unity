@@ -217,9 +217,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 508437252}
+      - m_Target: {fileID: 1160793232}
         m_TargetAssemblyTypeName: Level5, Assembly-CSharp
-        m_MethodName: checkWin
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -791,7 +791,12 @@ MonoBehaviour:
   mainUpDiagonal: 0000000000
   downDiagonal: 0000000000
   upDiagonal: 0000000000
-  sum: 0
+  r: 0
+  c: 0
+  mDD: 0
+  mUD: 0
+  dD: 0
+  uD: 0
 --- !u!1001 &706628871
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2358,6 +2363,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45510a8fa93474b2fb0980b58738b20d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numberOfClone: 2
+  level: 5
+  levelNumber: {x: 3, y: 6}
+  levelPlayer:
+  - {fileID: 11400000, guid: 049b1cc5f2b734d6c99eeafe988c79cd, type: 2}
+  - {fileID: 11400000, guid: a93ef2a560f9a4e0a9af34cc06770b63, type: 2}
+  - {fileID: 11400000, guid: de763710b0f8745829ec681a6bbf64c9, type: 2}
+  - {fileID: 11400000, guid: 89a9afe17386d4cd8a2a74931419957a, type: 2}
+  - {fileID: 11400000, guid: 390a60dea0c2e400fa566a051b92478b, type: 2}
 --- !u!1001 &7126157258362505877
 PrefabInstance:
   m_ObjectHideFlags: 0
