@@ -18,11 +18,12 @@ public class Level3 : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        player.transform.position = new Vector3(0, 3, 0);
     }
     // Start is called before the first frame update
     void Start()
     {
-        player.transform.position = new Vector3(0, 3, 0);
+        //player.transform.position = new Vector3(0, 3, 0);
         brickGate =  Instantiate(brick, new Vector3(2 * 3, 0, -5 * 3), Quaternion.identity);
         GenMap.instance.positionOfBrick.Add(brickGate);
         brickGate1 = Instantiate(brick, new Vector3(2 * 3, 0, -4 * 3), Quaternion.identity);
@@ -34,10 +35,11 @@ public class Level3 : MonoBehaviour
         brickGate2.SetActive(false);
 
     }
-    private void OnEnable()
-    {
-        player.transform.position = new Vector3(0, 3, 0);
-    }
+    
+    //private void OnEnable()
+    //{
+    //    
+    //}
     // Update is called once per frame
     void Update()
     {

@@ -24,6 +24,7 @@ public class Level2 : MonoBehaviour
     private void OnEnable()
     {
         player.transform.position = new Vector3(0, 3, 0);
+        StartCoroutine(delayWin());
     }
     [System.Obsolete]
     
