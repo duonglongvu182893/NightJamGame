@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4473822385730700065}
   - component: {fileID: 6903255798616131455}
   - component: {fileID: 1852602763499852877}
+  - component: {fileID: 3554534869445367375}
   m_Layer: 0
   m_Name: WorkBlock 1
   m_TagString: W_Brick
@@ -127,3 +128,64 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c3a00e9f36194ffea2fc7c79ecb4e91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3554534869445367375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4473822385732760069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fdc95d9dfe9cf54398eecb6868b0335, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateMode: 0
+  _foldoutControl: 1
+  _foldoutEvents: 1
+  _duration: 0.7
+  timeMode: 1
+  wrapMode: 0
+  arrivedAction: 3
+  sampleOnAwake: 1
+  runOnEnable: 0
+  _onForwardArrived:
+    m_PersistentCalls:
+      m_Calls: []
+  _onBackArrived:
+    m_PersistentCalls:
+      m_Calls: []
+  _animations:
+  - rid: 4843467027518324737
+  references:
+    version: 2
+    RefIds:
+    - rid: 4843467027518324737
+      type: {class: TweenTransformPosition, ns: UnityExtensions.Tween, asm: Assembly-CSharp}
+      data:
+        enabled: 1
+        _minNormalizedTime: 0.5714286
+        _maxNormalizedTime: 1
+        _holdBeforeStart: 1
+        _holdAfterEnd: 1
+        _interpolator:
+          type: 5
+          strength: 0.5
+          customCurve:
+            serializedVersion: 2
+            m_Curve: []
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+        _foldout: 1
+        _comment: 
+        runtimeFrom: 0
+        from: {x: 0, y: 0, z: 0}
+        to: {x: 0, y: -20, z: 0}
+        relative: 0
+        target: {fileID: 4473822385733087019}
+        toggle:
+          x: 0
+          y: 1
+          z: 0
+        space: 1

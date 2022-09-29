@@ -204,7 +204,7 @@ public class Level5 : MonoBehaviour
 
     public void checkWin()
     {
-        check(Level5.instance.sizeOfLevel5);
+        check(sizeOfLevel5);
         for (int i = 0; i < 5; i++)
         {
             if (row[i])
@@ -265,7 +265,7 @@ public class Level5 : MonoBehaviour
             }
 
         }
-        ResetValue();
+        //ResetValue();
         
 
     }
