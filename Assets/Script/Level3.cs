@@ -24,12 +24,12 @@ public class Level3 : MonoBehaviour
     void Start()
     {
         player.transform.position = new Vector3(0, 3, 0);
-        brickGate =  Instantiate(brick, new Vector3(2 * 3, 0, -5 * 3), Quaternion.identity);
-        GenMap.instance.positionOfBrick.Add(brickGate);
-        brickGate1 = Instantiate(brick, new Vector3(2 * 3, 0, -4 * 3), Quaternion.identity);
-        GenMap.instance.positionOfBrick.Add(brickGate1);
-        brickGate2 = Instantiate(brick, new Vector3(3 * 3, 0, -4 * 3), Quaternion.identity);
-        GenMap.instance.positionOfBrick.Add(brickGate2);
+        //brickGate =  Instantiate(brick, new Vector3(2 * 3, 0, -5 * 3), Quaternion.identity);
+        //GenMap.instance.positionOfBrick.Add(brickGate);
+        //brickGate1 = Instantiate(brick, new Vector3(2 * 3, 0, -4 * 3), Quaternion.identity);
+        //GenMap.instance.positionOfBrick.Add(brickGate1);
+        //brickGate2 = Instantiate(brick, new Vector3(3 * 3, 0, -4 * 3), Quaternion.identity);
+        //GenMap.instance.positionOfBrick.Add(brickGate2);
         brickGate.SetActive(false);
         brickGate1.SetActive(false);
         brickGate2.SetActive(false);
@@ -39,12 +39,12 @@ public class Level3 : MonoBehaviour
     private void OnEnable()
     {
         player.transform.position = new Vector3(0, 3, 0);
-        brickGate = Instantiate(brick, new Vector3(2 * 3, 0, -5 * 3), Quaternion.identity);
-        GenMap.instance.positionOfBrick.Add(brickGate);
-        brickGate1 = Instantiate(brick, new Vector3(2 * 3, 0, -4 * 3), Quaternion.identity);
-        GenMap.instance.positionOfBrick.Add(brickGate1);
-        brickGate2 = Instantiate(brick, new Vector3(3 * 3, 0, -4 * 3), Quaternion.identity);
-        GenMap.instance.positionOfBrick.Add(brickGate2);
+        //brickGate = Instantiate(brick, new Vector3(2 * 3, 0, -5 * 3), Quaternion.identity);
+        //GenMap.instance.positionOfBrick.Add(brickGate);
+        //brickGate1 = Instantiate(brick, new Vector3(2 * 3, 0, -4 * 3), Quaternion.identity);
+        //GenMap.instance.positionOfBrick.Add(brickGate1);
+        //brickGate2 = Instantiate(brick, new Vector3(3 * 3, 0, -4 * 3), Quaternion.identity);
+        //GenMap.instance.positionOfBrick.Add(brickGate2);
         brickGate.SetActive(false);
         brickGate1.SetActive(false);
         brickGate2.SetActive(false);
@@ -90,19 +90,19 @@ public class Level3 : MonoBehaviour
         positionOfSwitch = Random.RandomRange(1, GenMap.instance.positionOfBrick.Count / 2);
         cloneSwitch(GenMap.instance.positionOfBrick[positionOfSwitch].transform.position);
     }
-    public void setActiveBrick(int a)
-    {
-        if (a == 0)
-        {
-            brickGate.SetActive(false);
-            brickGate1.SetActive(false);
-            brickGate2.SetActive(false);
-        }
-        if (a == 1)
-        {
-            brickGate.SetActive(true);
-            brickGate1.SetActive(true);
-            brickGate2.SetActive(true);
-        }
-    }
+    //public void setActiveBrick(int a)
+    //{
+    //    if (a == 0)
+    //    {
+    //        brickGate.SetActive(false);
+    //        brickGate1.SetActive(false);
+    //        brickGate2.SetActive(false);
+    //    }
+    //    if (a == 1)
+    //    {
+    //        brickGate.SetActive(true);
+    //        brickGate1.SetActive(true);
+    //        brickGate2.SetActive(true);
+    //    }
+    //}
 }

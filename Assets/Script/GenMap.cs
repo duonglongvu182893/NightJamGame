@@ -52,23 +52,13 @@ public class GenMap : MonoBehaviour
     [System.Obsolete]
     void Start()
     {
-        //createList(level1.instance.sizeOfLevel1, 1);
-        //createList(Level2.instance.sizeOfLevel2, 2);
-        //createList(Level3.instance.sizeOfLevel3, 3);
-        //createList(Level4.instance.sizeOfLevel4, 4);
-        //createList(Level5.instance.sizeOfLevel5, 5);
-
-        //setTouch(0, 2, Level4.instance.sizeOfLevel4);
-        //setTouch(0, 1, Level4.instance.sizeOfLevel4);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        //for(int i = 0; i <= board.Count; i++)
-        //{
-        //    isTouch[i] = board[i].istouch;
-        //}
+       
     }
 
     [System.Obsolete]
@@ -315,6 +305,11 @@ public class GenMap : MonoBehaviour
             
             
         }
+        for(int i = 0; i < brickDisable.Count; i++)
+        {
+            Destroy(brickDisable[i]);
+        }
+        brickDisable.Clear();
         positionOfBrick.Clear();
     }
     public void DestroyTool()

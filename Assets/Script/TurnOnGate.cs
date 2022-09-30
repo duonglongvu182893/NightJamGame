@@ -21,8 +21,8 @@ public class TurnOnGate : MonoBehaviour
         if (other.transform.tag == "Player" || other.transform.tag == "Clone")
         {
             //GenMap.instance.enableBrick();
-            //StartCoroutine(GenMap.instance.delayEnable());
-            Level3.instance.setActiveBrick(1);
+            StartCoroutine(GenMap.instance.delayEnable());
+            //Level3.instance.setActiveBrick(1);
 
             winCheck.instance.checkWin();
         }
@@ -32,7 +32,7 @@ public class TurnOnGate : MonoBehaviour
         if (other.transform.tag == "Player" || other.transform.tag == "Clone")
         {
             StartCoroutine( GenMap.instance.delayDiable());
-            Level3.instance.setActiveBrick(0);
+            //Level3.instance.setActiveBrick(0);
             winCheck.instance.disbaleWin();
         }
     }

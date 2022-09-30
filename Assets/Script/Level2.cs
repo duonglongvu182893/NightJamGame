@@ -52,7 +52,7 @@ public class Level2 : MonoBehaviour
         for (int i = 0; i < numberOfDisbaleBrick.Count; i++)
         {
             GenMap.instance.board[(numberOfDisbaleBrick[i])].disableBrick = true;
-            Debug.Log((numberOfDisbaleBrick[i]));
+            //Debug.Log((numberOfDisbaleBrick[i]));
         }
 
     }

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityExtensions.Tween;
 using UnityEngine.UI;
 using EazyEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class UIController : MonoBehaviour
@@ -11,7 +12,9 @@ public class UIController : MonoBehaviour
     [SerializeField] UIElement startUI;
     [SerializeField] UIElement sellectionButton;
     [SerializeField] UIElement guildButton;
+    [SerializeField] UIElement loadTrans;
     [SerializeField] TweenPlayer testTing;
+    [SerializeField] GameObject Player;
 
     [SerializeField] Button Resset;
     [SerializeField] Button Guild;
@@ -73,5 +76,39 @@ public class UIController : MonoBehaviour
             Sellection.interactable = true;
             Resset.interactable = true;
         }
+    }
+    public void transToMenu()
+    {
+        StartCoroutine(delayTransMenu());
+    }
+    IEnumerator delayTransMenu()
+    {
+        loadTrans.show();
+        yield return new WaitForSeconds(0.7f);
+        StartCoroutine(delayLoadMenu());
+    }
+    IEnumerator delayLoadMenu()
+    {
+        loadTrans.close();
+        yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadScene(0);
+    }
+
+    //[System.Obsolete]
+    [System.Obsolete]
+    public void reload()
+    {
+        GenMap.instance.DestroyMap();
+        GenMap.instance.DestroyTool();
+        PlayerWhenStart.instance.setLevel(PlayerWhenStart.instance.level);
+        PlayerController.instance.destroyClone();
+        Player.transform.position = new Vector3(0, 3, 0);
+        Player.transform.rotation = Quaternion.Euler(0, 0, 0);
+        if (PlayerWhenStart.instance.level!=4&& PlayerWhenStart.instance.level != 5)
+        {
+            winCheck.instance.checkWin();
+        }
+
+        
     }
 }
