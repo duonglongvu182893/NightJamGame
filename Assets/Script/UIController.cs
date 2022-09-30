@@ -15,7 +15,8 @@ public class UIController : MonoBehaviour
     [SerializeField] UIElement loadTrans;
     [SerializeField] TweenPlayer testTing;
     [SerializeField] GameObject Player;
-
+    //[SerializeField] GameObject Camera;
+ 
     [SerializeField] Button Resset;
     [SerializeField] Button Guild;
     [SerializeField] Button Sellection;
@@ -111,4 +112,8 @@ public class UIController : MonoBehaviour
 
         
     }
+    //public void changeCamera()
+    //{
+    //    Camera.SetActive(true);
+    //}
 }
