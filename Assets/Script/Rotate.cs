@@ -21,12 +21,7 @@ public class Rotate : MonoBehaviour {
     {
         if (other.transform.tag == "Player")
         {
-			//StartCoroutine(delay());
-			//player.transform.position = new Vector3(0, 0, 0);
-			//PlayerWhenStart.instance.level++;
-			//GenMap.instance.DestroyTool();
-			//StartCoroutine(PlayerWhenStart.instance.destroyOldPlatform(PlayerWhenStart.instance.level));
-
+			
 			StartCoroutine(GenMap.instance.delayMap());
 			PlayerWhenStart.instance.level++;
 			GenMap.instance.DestroyTool();
@@ -34,10 +29,6 @@ public class Rotate : MonoBehaviour {
 
 		}
 
-		//IEnumerator delay()
-  //      {
-		//	StartCoroutine(PlayerController.instance.destroyClone());
-		//	yield return new WaitForSeconds(1f);
-		//}
+		
     }
 }

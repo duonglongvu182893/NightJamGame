@@ -6,7 +6,10 @@ using UnityExtensions.Tween;
 public class PlayerController : MonoBehaviour
 {
 
+
     public static PlayerController instance;
+
+
     [SerializeField] Material w_brick;
     [SerializeField] Material b_brick;
     [SerializeField] GameObject Player;
@@ -19,6 +22,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform back;
     [SerializeField] private float rollSpeed = 3;
 
+
+    public Swipe swipeController;
     public List<GameObject> cloneBrick = new List<GameObject>();
 
 
@@ -61,16 +66,15 @@ public class PlayerController : MonoBehaviour
     {
         getInputClonePlayer();
         getInput();
+        CheckSwipe();
         
     }
 
     //private void FixedUpdate()
     //{
-    //    //transform.position = Vector3.Normalize(transform.position);
-    //    getInputClonePlayer();
-    //    getInput();
+    //    transform.position = new Vector3(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y), Mathf.Round(transform.position.z));
     //}
-   
+
     private void getInput()
     {
         if (isMoving) return;
@@ -172,7 +176,7 @@ public class PlayerController : MonoBehaviour
             transform.RotateAround(anchor, axis, rollSpeed);
             yield return new WaitForSeconds(0.01f);
         }
-        //transform.position = new Vector3(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y), Mathf.Round(transform.position.z));
+        transform.position = new Vector3(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y), Mathf.Round(transform.position.z));
         isMoving = false;
     }
 
@@ -236,5 +240,89 @@ public class PlayerController : MonoBehaviour
             }
         }
         
+    }
+
+    void CheckSwipe()
+    {
+        if (isMoving) return;
+
+        if (isClone && (PlayerWhenStart.instance.numberOfClone > 0))
+        {
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                Debug.Log("Clone left");
+                cloneBrickPlayer(left);
+                PlayerWhenStart.instance.numberOfClone--;
+
+                //rollDirection(Vector3.left);
+            }
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                Debug.Log("Clone right");
+                cloneBrickPlayer(right);
+                PlayerWhenStart.instance.numberOfClone--;
+                //rollDirection(Vector3.right);
+            }
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                Debug.Log("Clone back");
+                cloneBrickPlayer(back);
+                PlayerWhenStart.instance.numberOfClone--;
+                //rollDirection(Vector3.back);
+            }
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                Debug.Log("Clone forward");
+                cloneBrickPlayer(forward);
+                PlayerWhenStart.instance.numberOfClone--;
+                //rollDirection(Vector3.forward);
+            }
+
+        }
+        if (isClone && (PlayerWhenStart.instance.numberOfClone <= 0))
+        {
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                Debug.Log("Can't Clone left");
+
+            }
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                Debug.Log("Can't Clone right");
+
+            }
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                Debug.Log("Can't Clone back");
+
+            }
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                Debug.Log("Can't Clone forward");
+
+            }
+
+        }
+        else if (!isClone)
+        {
+            if (swipeController.SwipeLeft)
+            {
+                rollDirection(Vector3.left);
+            }
+            if (swipeController.SwipeRight)
+            {
+                rollDirection(Vector3.right);
+            }
+            if (swipeController.SwipeDown)
+            {
+                rollDirection(Vector3.back);
+            }
+            if (swipeController.SwipeUp)
+            {
+                rollDirection(Vector3.forward);
+            }
+        }
+        
+
     }
 }
