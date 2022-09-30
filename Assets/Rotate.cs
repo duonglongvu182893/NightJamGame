@@ -23,11 +23,16 @@ public class Rotate : MonoBehaviour {
         {
 			//StartCoroutine(delay());
 			//player.transform.position = new Vector3(0, 0, 0);
+			//PlayerWhenStart.instance.level++;
+			//GenMap.instance.DestroyTool();
+			//StartCoroutine(PlayerWhenStart.instance.destroyOldPlatform(PlayerWhenStart.instance.level));
+
+			StartCoroutine(GenMap.instance.delayMap());
 			PlayerWhenStart.instance.level++;
 			GenMap.instance.DestroyTool();
 			StartCoroutine(PlayerWhenStart.instance.destroyOldPlatform(PlayerWhenStart.instance.level));
-            
-        }
+
+		}
 
 		//IEnumerator delay()
   //      {

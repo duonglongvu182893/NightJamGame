@@ -56,13 +56,7 @@ public class PlayerWhenStart : MonoBehaviour
     public IEnumerator destroyOldPlatform(int level)
     {
         yield return new WaitForSeconds(0.5f);
-        //transform.position = new Vector3(0, 3, 0);
         GenMap.instance.DestroyMap();
         setLevel(level);
-        //PlayerController.instance.isMoving = true;
-        //yield return new WaitForSeconds(2f);
-        //PlayerController.instance.isMoving = false;
-
-
     }
 }

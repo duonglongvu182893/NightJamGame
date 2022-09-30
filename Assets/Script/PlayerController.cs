@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Material b_brick;
     [SerializeField] GameObject Player;
     [SerializeField] GameObject cloneOfPlayer;
+    [SerializeField] GameObject cloneOfPlayerlevel5;
     [SerializeField] TweenPlayer clone;
     [SerializeField] Transform left;
     [SerializeField] Transform right;
@@ -27,17 +28,6 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        //if (instance != null)
-        //{
-
-        //}
-
-        ////đã có instance -> hủy object mới tạo
-        //else
-        //{
-        //    instance = this;
-        //    DontDestroyOnLoad(gameObject);
-        //}
         if (instance == null)
         {
             instance = this;
@@ -45,10 +35,10 @@ public class PlayerController : MonoBehaviour
         }
         else if (instance != this)
         {
-            //Destroy(gameObject);
-            
+            Destroy(gameObject);
+
         }
-           
+
 
     }
     protected void OnDestroy()
@@ -182,7 +172,7 @@ public class PlayerController : MonoBehaviour
             transform.RotateAround(anchor, axis, rollSpeed);
             yield return new WaitForSeconds(0.01f);
         }
-        transform.position = new Vector3(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y), Mathf.Round(transform.position.z));
+        //transform.position = new Vector3(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y), Mathf.Round(transform.position.z));
         isMoving = false;
     }
 
@@ -204,8 +194,17 @@ public class PlayerController : MonoBehaviour
 
     void cloneBrickPlayer(Transform position)
     {
-        GameObject clonePlayer = Instantiate(cloneOfPlayer, position.position, Quaternion.identity);
-        cloneBrick.Add(clonePlayer);
+        //if (PlayerWhenStart.instance.level == 4)
+        //{
+            GameObject clonePlayer = Instantiate(cloneOfPlayer, position.position, Quaternion.identity);
+            cloneBrick.Add(clonePlayer);
+        //}
+        //else if (PlayerWhenStart.instance.level != 4)
+        //{
+        //    GameObject clonePlayer = Instantiate(cloneOfPlayerlevel5, position.position, Quaternion.identity);
+        //    cloneBrick.Add(clonePlayer);
+        //}
+        
     }
     public void deleteClone()
     {
@@ -221,7 +220,7 @@ public class PlayerController : MonoBehaviour
         {
             cloneBrick[i].GetComponent<TweenPlayer>().ForcePlayBackRuntime();
             yield return new WaitForSeconds(0.4f);
-            Destroy(cloneBrick[i]);
+             Destroy(cloneBrick[i]);
         }
         cloneBrick.Clear();
     }

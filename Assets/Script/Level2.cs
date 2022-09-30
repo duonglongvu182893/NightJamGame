@@ -17,7 +17,7 @@ public class Level2 : MonoBehaviour
     }
     void Start()
     {
-        //player.transform.position = new Vector3(0, 3, 0);
+        player.transform.position = new Vector3(0, 3, 0);
         //player.transform.position = new Vector3(0, 3, 0) - new Vector3(-6, -9, +15);
         StartCoroutine(delayWin());
     }

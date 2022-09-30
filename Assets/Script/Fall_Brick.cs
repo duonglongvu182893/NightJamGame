@@ -22,9 +22,6 @@ public class Fall_Brick : MonoBehaviour
     private void OnCollisionExit(Collision collision)
     {
 
-        //myRb.isKinematic = false;
-
-
         transform.GetComponent<TweenPlayer>().ForcePlayRuntime();
     }
 }

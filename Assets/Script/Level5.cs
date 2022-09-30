@@ -51,7 +51,9 @@ public class Level5 : MonoBehaviour
     {
         player.transform.position = new Vector3(0, 3, 0);
     }
+
     // Update is called once per frame
+    [System.Obsolete]
     void Update()
     {
         //GenMap.instance.board[Mathf.FloorToInt(3 + 1 * sizeOfLevel4.x)].istouch = true;
@@ -209,6 +211,7 @@ public class Level5 : MonoBehaviour
         }
     }
 
+    [System.Obsolete]
     public void checkWin()
     {
         check(sizeOfLevel5);

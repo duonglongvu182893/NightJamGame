@@ -9,12 +9,34 @@ public class pickPosition : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //GenMap.instance.setTouch(Mathf.FloorToInt(Mathf.Round(transform.position.x)),Mathf.FloorToInt( Mathf.Round(transform.position.z)), Level4.instance.sizeOfLevel4);
+        setPosition();
+        
+        if (PlayerWhenStart.instance.level == 4)
+        {
+            GenMapWithPosition(i, j, Level4.instance.sizeOfLevel4);
+        }
+        else if(PlayerWhenStart.instance.level != 4)
+        {
+            GenMapWithPosition(i, j, Level5.instance.sizeOfLevel5);
+
+        }
+
+
+        transform.position = new Vector3(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y), Mathf.Round(transform.position.z));
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+    void setPosition()
+    {
         if (Mathf.Round(transform.position.x) < 0)
         {
             i = -(Mathf.FloorToInt(Mathf.Round(transform.position.x) / 3));
         }
-        else if(Mathf.Round(transform.position.x) > 0)
+        else if (Mathf.Round(transform.position.x) > 0)
         {
             i = Mathf.FloorToInt(Mathf.Round(transform.position.x)) / 3;
         }
@@ -26,22 +48,10 @@ public class pickPosition : MonoBehaviour
         {
             j = Mathf.FloorToInt(Mathf.Round(transform.position.z)) / 3;
         }
-        //if(PlayerWhenStart.instance.level == 4)
-        //{
-        //    GenMap.instance.setTouch(i, j, Level4.instance.sizeOfLevel4);
-        //}
-        //else if (PlayerWhenStart.instance.level == 5)
-        //{
-        GenMap.instance.setTouch(i, j, Level5.instance.sizeOfLevel5);
-        //}
-        
-        transform.position = new Vector3(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y), Mathf.Round(transform.position.z));
-    }
 
-    // Update is called once per frame
-    void Update()
+    }
+    void GenMapWithPosition(int i , int j , Vector2 size)
     {
-        
+        GenMap.instance.setTouch(i, j, size);
     }
-
 }
