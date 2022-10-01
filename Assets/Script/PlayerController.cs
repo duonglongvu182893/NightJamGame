@@ -227,6 +227,8 @@ public class PlayerController : MonoBehaviour
         }
         cloneBrick.Clear();
     }
+
+    [System.Obsolete]
     private void OnTriggerEnter(Collider other)
     {
         if(other.transform.tag == "Finish")
@@ -250,6 +252,20 @@ public class PlayerController : MonoBehaviour
             if (other.transform.position.z == transform.position.z)
             {
                 Debug.Log("khong nhan input o phia " + other.transform.position.x  +" ,0, 0)" );
+            }
+        }
+        if(other.transform.tag == "DeadZone")
+        {
+            //UIController.instance.reload();
+            GenMap.instance.DestroyMap();
+            GenMap.instance.DestroyTool();
+            StartCoroutine(PlayerController.instance.destroyClone());
+            PlayerWhenStart.instance.setLevel(PlayerWhenStart.instance.level);
+            Player.transform.position = new Vector3(0, 3, 0);
+            Player.transform.rotation = Quaternion.Euler(0, 0, 0);
+            if (PlayerWhenStart.instance.level != 4 && PlayerWhenStart.instance.level != 5)
+            {
+                winCheck.instance.checkWin();
             }
         }
         

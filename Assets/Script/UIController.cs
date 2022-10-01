@@ -111,23 +111,23 @@ public class UIController : MonoBehaviour
         StartCoroutine(delay());
         //PlayerWhenStart.instance.setLevel(PlayerWhenStart.instance.level);
         //Player.transform.position = new Vector3(0, 3, 0);
-        Player.transform.rotation = Quaternion.Euler(0, 0, 0);
-        if (PlayerWhenStart.instance.level!=4&& PlayerWhenStart.instance.level != 5)
-        {
-            winCheck.instance.checkWin();
-        }
+        //Player.transform.rotation = Quaternion.Euler(0, 0, 0);
+        //if (PlayerWhenStart.instance.level!=4&& PlayerWhenStart.instance.level != 5)
+        //{
+        //    winCheck.instance.checkWin();
+        //}
         //reloadTrans.close();
 
 
     }
-    IEnumerator delayDestroy()
+    public IEnumerator delayDestroy()
     {
         yield return new WaitForSeconds(0.4f);
         GenMap.instance.DestroyMap();
         GenMap.instance.DestroyTool();
     }
     [System.Obsolete]
-    IEnumerator delay()
+    public IEnumerator delay()
     {
         yield return new WaitForSeconds(0.6f);
         PlayerWhenStart.instance.setLevel(PlayerWhenStart.instance.level);
