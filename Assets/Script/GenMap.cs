@@ -102,9 +102,20 @@ public class GenMap : MonoBehaviour
                 }
                 else if (currenCell.isVisited && currenCell.targetBrick)
                 {
-                    GameObject newWay = Instantiate(targetBrick, new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity);
-                    numberOfBrick.Add(Mathf.FloorToInt(i + j * size.x));
-                    saveTarget = newWay;
+                    if (PlayerWhenStart.instance.level < 4)
+                    {
+                        GameObject newWay = Instantiate(targetBrick, new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity);
+                        numberOfBrick.Add(Mathf.FloorToInt(i + j * size.x));
+                        saveTarget = newWay;
+                    }
+                    else
+                    {
+                        GameObject newWay = Instantiate( brick, new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity);
+                        numberOfBrick.Add(Mathf.FloorToInt(i + j * size.x));
+                        saveTarget = newWay;
+
+                    }
+                    
                 }
 
             }

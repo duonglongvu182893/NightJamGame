@@ -50,13 +50,16 @@ public class PlayerWhenStart : MonoBehaviour
         }
         GenMap.instance.createList(levelPlayer[a].size, levelPlayer[a].numberOfLevel);
         numberOfClone = levelPlayer[a].numberBrickCanClone;
+        //UIController.instance.openGuildButton();
     }
 
     [System.Obsolete]
     public IEnumerator destroyOldPlatform(int level)
     {
         yield return new WaitForSeconds(0.5f);
+       
         GenMap.instance.DestroyMap();
+
         setLevel(level);
     }
 }

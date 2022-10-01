@@ -9,12 +9,16 @@ using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
+    public static UIController instance;
     [SerializeField] UIElement startUI;
     [SerializeField] UIElement sellectionButton;
     [SerializeField] UIElement guildButton;
     [SerializeField] UIElement loadTrans;
+    [SerializeField] UIElement reloadTrans;
+
     [SerializeField] TweenPlayer testTing;
     [SerializeField] GameObject Player;
+
     //[SerializeField] GameObject Camera;
  
     [SerializeField] Button Resset;
@@ -99,18 +103,41 @@ public class UIController : MonoBehaviour
     [System.Obsolete]
     public void reload()
     {
-        GenMap.instance.DestroyMap();
-        GenMap.instance.DestroyTool();
-        PlayerWhenStart.instance.setLevel(PlayerWhenStart.instance.level);
-        PlayerController.instance.destroyClone();
-        Player.transform.position = new Vector3(0, 3, 0);
+        //reloadTrans.show();
+        //GenMap.instance.DestroyMap();
+        //GenMap.instance.DestroyTool();
+        StartCoroutine(delayDestroy());
+        StartCoroutine(PlayerController.instance.destroyClone());
+        StartCoroutine(delay());
+        //PlayerWhenStart.instance.setLevel(PlayerWhenStart.instance.level);
+        //Player.transform.position = new Vector3(0, 3, 0);
         Player.transform.rotation = Quaternion.Euler(0, 0, 0);
         if (PlayerWhenStart.instance.level!=4&& PlayerWhenStart.instance.level != 5)
         {
             winCheck.instance.checkWin();
         }
+        //reloadTrans.close();
 
-        
+
+    }
+    IEnumerator delayDestroy()
+    {
+        yield return new WaitForSeconds(0.4f);
+        GenMap.instance.DestroyMap();
+        GenMap.instance.DestroyTool();
+    }
+    [System.Obsolete]
+    IEnumerator delay()
+    {
+        yield return new WaitForSeconds(0.6f);
+        PlayerWhenStart.instance.setLevel(PlayerWhenStart.instance.level);
+        Player.transform.position = new Vector3(0, 3, 0);
+        Player.transform.rotation = Quaternion.Euler(0, 0, 0);
+        if (PlayerWhenStart.instance.level != 4 && PlayerWhenStart.instance.level != 5)
+        {
+            winCheck.instance.checkWin();
+        }
+
     }
     //public void changeCamera()
     //{

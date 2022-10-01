@@ -192,12 +192,14 @@ MonoBehaviour:
   b_brick: {fileID: 2100000, guid: dc5da13b1225d49818fca080ae778908, type: 2}
   Player: {fileID: 7405300065825113577}
   cloneOfPlayer: {fileID: 297760298064463686, guid: 3c886ea254b5d46a49d688b3f8186c8b, type: 3}
+  cloneOfPlayerlevel5: {fileID: 0}
   clone: {fileID: 0}
   left: {fileID: 0}
   right: {fileID: 0}
   forward: {fileID: 0}
   back: {fileID: 0}
   rollSpeed: 4
+  swipeController: {fileID: 0}
   cloneBrick: []
   isClone: 0
   isMoving: 0
