@@ -89,13 +89,13 @@ public class UIController : MonoBehaviour
     IEnumerator delayTransMenu()
     {
         loadTrans.show();
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(0.5f);
         StartCoroutine(delayLoadMenu());
     }
     IEnumerator delayLoadMenu()
     {
         loadTrans.close();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         SceneManager.LoadScene(0);
     }
 
