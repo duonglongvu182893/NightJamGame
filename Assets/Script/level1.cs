@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class level1 : MonoBehaviour
 {
     public GameObject player;
     public static level1 instance;
     public Vector2 sizeOfLevel1;
+    public TextMeshProUGUI textlv1;
 
 
     // Start is called before the first frame update
@@ -21,6 +23,8 @@ public class level1 : MonoBehaviour
     {
         player.transform.position = new Vector3(0, 3, 0);
         StartCoroutine(delay());
+
+        textlv1.text = "Swipe your screne to move ";
     }
 
     // Update is called once per frame

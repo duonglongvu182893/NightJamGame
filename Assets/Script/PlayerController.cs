@@ -202,6 +202,19 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+    public void getPutButton()
+    {
+        if (!isClone)
+        {
+            isClone = true;
+            clone.ForcePlayRuntime();
+        }
+        else if (isClone)
+        {
+            isClone = false;
+            clone.ForcePlayBackRuntime();
+        }
+    }
 
     void cloneBrickPlayer(Transform position)
     {
@@ -278,59 +291,59 @@ public class PlayerController : MonoBehaviour
 
         if (isClone && (PlayerWhenStart.instance.numberOfClone > 0))
         {
-            //if (Input.GetKeyDown(KeyCode.A))
-            //{
-            //    Debug.Log("Clone left");
-            //    cloneBrickPlayer(left);
-            //    PlayerWhenStart.instance.numberOfClone--;
+            if (swipeController.SwipeLeft)
+            {
+                Debug.Log("Clone left");
+                cloneBrickPlayer(left);
+                PlayerWhenStart.instance.numberOfClone--;
 
-            //    //rollDirection(Vector3.left);
-            //}
-            //if (Input.GetKeyDown(KeyCode.D))
-            //{
-            //    Debug.Log("Clone right");
-            //    cloneBrickPlayer(right);
-            //    PlayerWhenStart.instance.numberOfClone--;
-            //    //rollDirection(Vector3.right);
-            //}
-            //if (Input.GetKeyDown(KeyCode.S))
-            //{
-            //    Debug.Log("Clone back");
-            //    cloneBrickPlayer(back);
-            //    PlayerWhenStart.instance.numberOfClone--;
-            //    //rollDirection(Vector3.back);
-            //}
-            //if (Input.GetKeyDown(KeyCode.W))
-            //{
-            //    Debug.Log("Clone forward");
-            //    cloneBrickPlayer(forward);
-            //    PlayerWhenStart.instance.numberOfClone--;
-            //    //rollDirection(Vector3.forward);
-            //}
+                //rollDirection(Vector3.left);
+            }
+            if (swipeController.SwipeRight)
+            {
+                Debug.Log("Clone right");
+                cloneBrickPlayer(right);
+                PlayerWhenStart.instance.numberOfClone--;
+                //rollDirection(Vector3.right);
+            }
+            if (swipeController.SwipeDown)
+            {
+                Debug.Log("Clone back");
+                cloneBrickPlayer(back);
+                PlayerWhenStart.instance.numberOfClone--;
+                //rollDirection(Vector3.back);
+            }
+            if (swipeController.SwipeUp)
+            {
+                Debug.Log("Clone forward");
+                cloneBrickPlayer(forward);
+                PlayerWhenStart.instance.numberOfClone--;
+                //rollDirection(Vector3.forward);
+            }
 
         }
         if (isClone && (PlayerWhenStart.instance.numberOfClone <= 0))
         {
-            //if (Input.GetKeyDown(KeyCode.A))
-            //{
-            //    Debug.Log("Can't Clone left");
+            if (swipeController.SwipeLeft)
+            {
+                Debug.Log("Can't Clone left");
 
-            //}
-            //if (Input.GetKeyDown(KeyCode.D))
-            //{
-            //    Debug.Log("Can't Clone right");
+            }
+            if (swipeController.SwipeRight)
+            {
+                Debug.Log("Can't Clone right");
 
-            //}
-            //if (Input.GetKeyDown(KeyCode.S))
-            //{
-            //    Debug.Log("Can't Clone back");
+            }
+            if (swipeController.SwipeDown)
+            {
+                Debug.Log("Can't Clone back");
 
-            //}
-            //if (Input.GetKeyDown(KeyCode.W))
-            //{
-            //    Debug.Log("Can't Clone forward");
+            }
+            if (swipeController.SwipeUp)
+            {
+                Debug.Log("Can't Clone forward");
 
-            //}
+            }
 
         }
         else if (!isClone)

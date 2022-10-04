@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Level2 : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Level2 : MonoBehaviour
     public List<int> numberOfDisbaleBrick ;
     public Vector2 sizeOfLevel2;
     public GameObject switchGate;
+    public TextMeshProUGUI textlv1;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -25,6 +27,7 @@ public class Level2 : MonoBehaviour
     {
         player.transform.position = new Vector3(0, 3, 0);
         StartCoroutine(delayWin());
+        textlv1.text = "Swipe your screne to move, use tool on Way";
     }
     [System.Obsolete]
     

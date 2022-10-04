@@ -24,6 +24,7 @@ public class UIController : MonoBehaviour
     [SerializeField] Button Resset;
     [SerializeField] Button Guild;
     [SerializeField] Button Sellection;
+    [SerializeField] Button PutButton;
 
     public bool isSellectionIsOpen = false;
     public bool isSGuildIsOpen = false;
@@ -54,6 +55,7 @@ public class UIController : MonoBehaviour
             isSellectionIsOpen = true;
             Guild.interactable = false;
             Resset.interactable = false;
+            PutButton.interactable = false;
         }
         else if (isSellectionIsOpen)
 
@@ -62,6 +64,7 @@ public class UIController : MonoBehaviour
             isSellectionIsOpen = false;
             Guild.interactable = true;
             Resset.interactable = true;
+            PutButton.interactable = true;
         }
         
     }
@@ -73,6 +76,7 @@ public class UIController : MonoBehaviour
             isSGuildIsOpen = true;
             Sellection.interactable = false;
             Resset.interactable = false;
+            PutButton.interactable = false;
         }
         else if (isSGuildIsOpen)
         {
@@ -80,6 +84,7 @@ public class UIController : MonoBehaviour
             isSGuildIsOpen = false;
             Sellection.interactable = true;
             Resset.interactable = true;
+            PutButton.interactable = true;
         }
     }
     public void transToMenu()
