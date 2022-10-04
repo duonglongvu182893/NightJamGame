@@ -309,7 +309,7 @@ public class Level4 : MonoBehaviour
     [System.Obsolete]
     IEnumerator delay()
     {
-        yield return new WaitForSeconds(0.3f);
+        //yield return new WaitForSeconds(0.3f);
         if (PlayerWhenStart.instance.numberOfClone <= 0 && (!r || !c || !mUD || !mDD || !uD || !dD))
         {
             //StartCoroutine(PlayerController.instance.destroyClone());
@@ -318,7 +318,9 @@ public class Level4 : MonoBehaviour
             PlayerWhenStart.instance.level = 5;
             StartCoroutine(PlayerWhenStart.instance.destroyOldPlatform(PlayerWhenStart.instance.level));
 
+
         }
+        yield return new WaitForSeconds(0.3f);
     }
     public void resetLevel4()
     {

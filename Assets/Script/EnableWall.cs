@@ -18,17 +18,6 @@ public class EnableWall : MonoBehaviour
     {
         //enableWall();
     }
-    //void enableWall()
-    //{
-    //    if(Vector3.Distance(position.transform.position, Player.transform.position)<5f)
-    //    {
-    //        PlatformControll.instance.logicMapGame();
-
-    //    }
-    //    else
-    //    {
-    //        PlatformControll.instance.endLogic();
-    //    }
-    //}
+   
     
 }

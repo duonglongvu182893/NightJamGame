@@ -116,21 +116,10 @@ public class UIController : MonoBehaviour
     [System.Obsolete]
     public void reload()
     {
-        //reloadTrans.show();
-        //GenMap.instance.DestroyMap();
-        //GenMap.instance.DestroyTool();
         StartCoroutine(delayDestroy());
         StartCoroutine(PlayerController.instance.destroyClone());
         StartCoroutine(delay());
-        //PlayerWhenStart.instance.setLevel(PlayerWhenStart.instance.level);
-        //Player.transform.position = new Vector3(0, 3, 0);
-        //Player.transform.rotation = Quaternion.Euler(0, 0, 0);
-        //if (PlayerWhenStart.instance.level!=4&& PlayerWhenStart.instance.level != 5)
-        //{
-        //    winCheck.instance.checkWin();
-        //}
-        //reloadTrans.close();
-
+       
 
     }
     public void closeGuide()
@@ -159,8 +148,5 @@ public class UIController : MonoBehaviour
         }
 
     }
-    //public void changeCamera()
-    //{
-    //    Camera.SetActive(true);
-    //}
+    
 }

@@ -18,6 +18,8 @@ public class Level5 : MonoBehaviour
     public int[] countDownDiagonal = new int[5];
     public int[] countUpDiagonal = new int[5];
 
+
+
      
 
     public bool[] row = new bool[5];
@@ -29,6 +31,8 @@ public class Level5 : MonoBehaviour
 
 
 
+
+    public GameObject win;
     public bool r, c, mDD, mUD, dD, uD;
     private void Awake()
     {
@@ -300,7 +304,7 @@ public class Level5 : MonoBehaviour
     [System.Obsolete]
     IEnumerator delay()
     {
-        yield return new WaitForSeconds(0.3f);
+        
         if (PlayerWhenStart.instance.numberOfClone <= 0 && (!r || !c || !mUD || !mDD || !uD || !dD))
         {
             //StartCoroutine(PlayerController.instance.destroyClone());
@@ -308,8 +312,10 @@ public class Level5 : MonoBehaviour
             PlayerWhenStart.instance.level = 6;
             GenMap.instance.DestroyTool();
             StartCoroutine(PlayerWhenStart.instance.destroyOldPlatform(PlayerWhenStart.instance.level));
+            win.SetActive(true);
 
         }
+        yield return new WaitForSeconds(0.3f);
     }
     public void resetLevel5()
     {

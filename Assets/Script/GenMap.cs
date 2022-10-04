@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityExtensions.Tween;
+using EazyEngine.UI;
+
 using UnityEngine;
 
 public class GenMap : MonoBehaviour
@@ -22,6 +24,7 @@ public class GenMap : MonoBehaviour
     [SerializeField] GameObject fallBrick;
     [SerializeField] GameObject targetBrick;
     [SerializeField] GameObject saveTarget;
+    [SerializeField] GameObject win;
 
 
     //public bool[] isTouch = new bool[16];
@@ -175,7 +178,7 @@ public class GenMap : MonoBehaviour
                 }
             case 6:
                 {
-                    //
+                    win.SetActive(true);
                     break;
                 }
             case 7:

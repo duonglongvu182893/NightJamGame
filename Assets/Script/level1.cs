@@ -34,10 +34,7 @@ public class level1 : MonoBehaviour
         lv3.SetActive(false);
         lv4.SetActive(false);
         dialog.show();
-        //level1Di.SetActive(true);
-        //level1Dialog.ForcePlayRuntime();
-        //level1d.show();
-        
+      
         player.transform.position = new Vector3(0, 3, 0);
         StartCoroutine(delay());
 

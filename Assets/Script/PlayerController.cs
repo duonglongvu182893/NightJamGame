@@ -39,23 +39,12 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        //if (instance == null)
-        //{
-            instance = this;
-        //    DontDestroyOnLoad(gameObject);
-        //}
-        //else if (instance != this)
-        //{
-        //    Destroy(gameObject);
-
-        //}
+        instance = this;
       
-
-
+ 
     }
     protected void OnDestroy()
-    {
-        //Nhớ giải phóng vì đây là static
+    { 
         if (instance == this)
         {
             instance = null;
@@ -65,7 +54,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
 
-        //transform.position = GenMap.instance.firtSpawPosition.position + new Vector3(0, 3, 0);
+       
     }
 
     // Update is called once per frame
@@ -101,29 +90,28 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Clone left");
                 cloneBrickPlayer(left);
                 PlayerWhenStart.instance.numberOfClone--;
-                
-                //rollDirection(Vector3.left);
+              
             }
             if (Input.GetKeyDown(KeyCode.D)&& !isBlockOnTheRight)
             {
                 Debug.Log("Clone right");
                 cloneBrickPlayer(right);
                 PlayerWhenStart.instance.numberOfClone--;
-                //rollDirection(Vector3.right);
+                
             }
             if (Input.GetKeyDown(KeyCode.S) && !isBlockBack) 
             {
                 Debug.Log("Clone back");
                 cloneBrickPlayer(back);
                 PlayerWhenStart.instance.numberOfClone--;
-                //rollDirection(Vector3.back);
+                
             }
             if (Input.GetKeyDown(KeyCode.W) && !isBlockFoward)
             {
                 Debug.Log("Clone forward");
                 cloneBrickPlayer(forward);
                 PlayerWhenStart.instance.numberOfClone--;
-                //rollDirection(Vector3.forward);
+               
             }
 
         }
@@ -193,7 +181,7 @@ public class PlayerController : MonoBehaviour
         }
         transform.position = new Vector3(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y), Mathf.Round(transform.position.z));
         isMoving = false;
-        //Debug.Log(Mathf.Abs(transform.rotation.x) + ", " + Mathf.Abs(transform.rotation.y) + ", " + Mathf.Abs(transform.rotation.z));
+        
     }
 
 
@@ -271,7 +259,7 @@ public class PlayerController : MonoBehaviour
         }
         else if(other.transform.tag == "DeadZone")
         {
-            //UIController.instance.reload();
+            
             GenMap.instance.DestroyMap();
             GenMap.instance.DestroyTool();
             StartCoroutine(PlayerController.instance.destroyClone());
@@ -288,7 +276,7 @@ public class PlayerController : MonoBehaviour
         else if (other.transform.tag == "check")
         {
             isOnBrick = true;
-            //isStayOnBrick = true;
+           
         }
 
 
@@ -306,28 +294,27 @@ public class PlayerController : MonoBehaviour
                 cloneBrickPlayer(left);
                 PlayerWhenStart.instance.numberOfClone--;
 
-                //rollDirection(Vector3.left);
             }
             if (swipeController.SwipeRight && !isBlockOnTheRight) 
             {
                 Debug.Log("Clone right");
                 cloneBrickPlayer(right);
                 PlayerWhenStart.instance.numberOfClone--;
-                //rollDirection(Vector3.right);
+                
             }
             if (swipeController.SwipeDown && !isBlockBack)
             {
                 Debug.Log("Clone back");
                 cloneBrickPlayer(back);
                 PlayerWhenStart.instance.numberOfClone--;
-                //rollDirection(Vector3.back);
+               
             }
             if (swipeController.SwipeUp && !isBlockFoward)
             {
                 Debug.Log("Clone forward");
                 cloneBrickPlayer(forward);
                 PlayerWhenStart.instance.numberOfClone--;
-                //rollDirection(Vector3.forward);
+                
             }
 
         }
@@ -377,10 +364,7 @@ public class PlayerController : MonoBehaviour
         
 
     }
-    //private void OnTRExit(Collision collision)
-    //{
-        
-    //}
+    
     private void OnTriggerExit(Collider other)
     {
         if (other.transform.tag == "check")
@@ -393,7 +377,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.transform.tag == "check")
         {
-            //isOnBrick = true;
+            
             isStayOnBrick = true;
         }
     }
