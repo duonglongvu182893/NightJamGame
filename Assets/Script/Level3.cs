@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Level3 : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Level3 : MonoBehaviour
     public Vector2 sizeOfLevel3;
     public GameObject switchGate;
     [SerializeField] GameObject brick;
+    [SerializeField] TextMeshProUGUI textlv3;
    
     private void Awake()
     {
@@ -26,6 +28,7 @@ public class Level3 : MonoBehaviour
 
     private void OnEnable()
     {
+        textlv3.text = "";
         player.transform.position = new Vector3(0, 3, 0);
        
     }

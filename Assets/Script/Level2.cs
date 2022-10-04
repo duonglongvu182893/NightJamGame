@@ -11,7 +11,7 @@ public class Level2 : MonoBehaviour
     public List<int> numberOfDisbaleBrick ;
     public Vector2 sizeOfLevel2;
     public GameObject switchGate;
-    public TextMeshProUGUI textlv1;
+    public TextMeshProUGUI textlv2;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -27,7 +27,7 @@ public class Level2 : MonoBehaviour
     {
         player.transform.position = new Vector3(0, 3, 0);
         StartCoroutine(delayWin());
-        textlv1.text = "Swipe your screne to move, use tool on Way";
+        textlv2.text = "Swipe your screne to move, use tool on the Way";
     }
     [System.Obsolete]
     
