@@ -264,6 +264,7 @@ public class Level4 : MonoBehaviour
         //    StartCoroutine(GenMap.instance.delayMap());
 
         //}
+        
         StartCoroutine(delay());
         ResetValue();
 
@@ -299,8 +300,8 @@ public class Level4 : MonoBehaviour
         {
             //StartCoroutine(PlayerController.instance.destroyClone());
             StartCoroutine(GenMap.instance.delayMap());
-            PlayerWhenStart.instance.level++;
             GenMap.instance.DestroyTool();
+            PlayerWhenStart.instance.level = 5;
             StartCoroutine(PlayerWhenStart.instance.destroyOldPlatform(PlayerWhenStart.instance.level));
 
         }

@@ -301,7 +301,7 @@ public class Level5 : MonoBehaviour
         {
             //StartCoroutine(PlayerController.instance.destroyClone());
             StartCoroutine(GenMap.instance.delayMap());
-            PlayerWhenStart.instance.level++;
+            PlayerWhenStart.instance.level = 6;
             GenMap.instance.DestroyTool();
             StartCoroutine(PlayerWhenStart.instance.destroyOldPlatform(PlayerWhenStart.instance.level));
 

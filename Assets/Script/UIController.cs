@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityExtensions.Tween;
 using UnityEngine.UI;
 using EazyEngine.UI;
+using TMPro;
 using UnityEngine.SceneManagement;
 
 
@@ -15,6 +16,9 @@ public class UIController : MonoBehaviour
     [SerializeField] UIElement guildButton;
     [SerializeField] UIElement loadTrans;
     [SerializeField] UIElement reloadTrans;
+    [SerializeField] UIElement guideDialog;
+
+    [SerializeField] TextMeshProUGUI level;
 
     [SerializeField] TweenPlayer testTing;
     [SerializeField] GameObject Player;
@@ -37,6 +41,7 @@ public class UIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        level.text = PlayerWhenStart.instance.level.ToString();
         //startUITextButton();
     }
     public void startUITextButton()
@@ -124,6 +129,10 @@ public class UIController : MonoBehaviour
         //reloadTrans.close();
 
 
+    }
+    public void closeGuide()
+    {
+        guideDialog.close();
     }
     public IEnumerator delayDestroy()
     {

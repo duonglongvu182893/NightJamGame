@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using EazyEngine.UI;
+using UnityExtensions.Tween;
 using UnityEngine.SceneManagement;
 
 public class MenuUIController : MonoBehaviour
@@ -12,6 +13,8 @@ public class MenuUIController : MonoBehaviour
     [SerializeField] Button start;
     [SerializeField] UIElement transLevel;
     [SerializeField] UIElement settingDiaLog;
+
+    [SerializeField] TweenPlayer level1Dialog;
     bool isOpen = false;
 
     // Start is called before the first frame update

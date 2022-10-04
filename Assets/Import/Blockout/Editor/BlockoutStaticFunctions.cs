@@ -597,6 +597,7 @@ namespace RadicalForge.Blockout
         /// <summary>
         /// Using the current selected asset, find it's prefab in thew project window
         /// </summary>
+        [Obsolete]
         public static void SelectAsset()
         {
             var go = Selection.activeGameObject;
@@ -612,6 +613,7 @@ namespace RadicalForge.Blockout
             }
         }
 
+        [Obsolete]
         static bool ValidateIsPrefab(GameObject target)
         {
             GameObject go = target as GameObject;
@@ -622,6 +624,7 @@ namespace RadicalForge.Blockout
                    PrefabUtility.GetPrefabType(go) == PrefabType.ModelPrefab;
         }
 
+        [Obsolete]
         public static void ReplaceObject(GameObject[] selection, GameObject target)
         {
             if (!ValidateIsPrefab(target))
@@ -644,6 +647,7 @@ namespace RadicalForge.Blockout
             }
         }
 
+        [Obsolete]
         public static void ReplaceObject(GameObject[] selection, GameObject target, out GameObject[] replacement)
         {
             replacement = new GameObject[]{ };
