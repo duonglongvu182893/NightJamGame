@@ -140,12 +140,14 @@ public class GenMap : MonoBehaviour
             case 1:
                 {
                     level1.instance.selectLevel1(size);
+                    PlayerWhenStart.instance.level = 1;
                     break;
                 }
             case 2:
                 {
                     Level2.instance.selectLevel2(size);
                     StartCoroutine(Level2.instance.delay());
+                    PlayerWhenStart.instance.level = 2;
                     break;
                 }
 
@@ -153,11 +155,13 @@ public class GenMap : MonoBehaviour
                 {
                     Level3.instance.selectLevel3(size);
                     StartCoroutine(Level3.instance.delay());
+                    PlayerWhenStart.instance.level = 3;
                     break;
                 }
             case 4:
                 {
                     //
+                    PlayerWhenStart.instance.level = 4;
                     Level4.instance.createMatrixNxN(size);
                     //Level4.instance.check(size);
 

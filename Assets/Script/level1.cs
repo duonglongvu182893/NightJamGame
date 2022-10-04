@@ -11,9 +11,13 @@ public class level1 : MonoBehaviour
     public static level1 instance;
     public Vector2 sizeOfLevel1;
     public TextMeshProUGUI textlv1;
+
     //[SerializeField] TweenPlayer level1Dialog;
     //[SerializeField] GameObject level1Di;
-    //[SerializeField] UIElement level1d;
+    [SerializeField] UIElement dialog;
+    [SerializeField] GameObject lv1;
+    [SerializeField] GameObject lv3;
+    [SerializeField] GameObject lv4;
 
     // Start is called before the first frame update
 
@@ -26,13 +30,19 @@ public class level1 : MonoBehaviour
     void Start()
 
     {
+        lv1.SetActive(true);
+        lv3.SetActive(false);
+        lv4.SetActive(false);
+        dialog.show();
         //level1Di.SetActive(true);
         //level1Dialog.ForcePlayRuntime();
         //level1d.show();
+        
         player.transform.position = new Vector3(0, 3, 0);
         StartCoroutine(delay());
 
         textlv1.text = "Swipe your screne to move ";
+        
         
     }
 

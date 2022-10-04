@@ -21,13 +21,26 @@ public class Rotate : MonoBehaviour {
     {
         if (other.transform.tag == "Player")
         {
-			
-			StartCoroutine(GenMap.instance.delayMap());
-			PlayerWhenStart.instance.level++;
-			GenMap.instance.DestroyTool();
-			StartCoroutine(PlayerWhenStart.instance.destroyOldPlatform(PlayerWhenStart.instance.level));
 
-		}
+            StartCoroutine(GenMap.instance.delayMap());
+            //PlayerWhenStart.instance.level = PlayerWhenStart.instance.level + 1;
+            if (PlayerWhenStart.instance.level == 1)
+            {
+                PlayerWhenStart.instance.level = 2;
+            }
+            else if (PlayerWhenStart.instance.level == 2)
+            {
+                PlayerWhenStart.instance.level = 3;
+            }
+            else if (PlayerWhenStart.instance.level == 3)
+            {
+                PlayerWhenStart.instance.level = 4;
+            }
+            GenMap.instance.DestroyTool();
+            StartCoroutine(PlayerWhenStart.instance.destroyOldPlatform(PlayerWhenStart.instance.level));
+            Debug.Log("+1");
+
+        }
 
 		
     }

@@ -17,14 +17,14 @@ public class forwardColider : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.tag != "Player")
+        if (other.transform.tag != "Player" && other.transform.tag != "check")
         {
             PlayerController.instance.isBlockFoward = true;
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.transform.tag != "Player")
+        if (other.transform.tag != "Player" && other.transform.tag != "check")
         {
             PlayerController.instance.isBlockFoward = false;
         }

@@ -17,6 +17,9 @@ public class UIController : MonoBehaviour
     [SerializeField] UIElement loadTrans;
     [SerializeField] UIElement reloadTrans;
     [SerializeField] UIElement guideDialog;
+    [SerializeField] GameObject lv1;
+    [SerializeField] GameObject lv3;
+    [SerializeField] GameObject lv4;
 
     [SerializeField] TextMeshProUGUI level;
 
@@ -133,6 +136,8 @@ public class UIController : MonoBehaviour
     public void closeGuide()
     {
         guideDialog.close();
+        
+        
     }
     public IEnumerator delayDestroy()
     {
@@ -145,6 +150,7 @@ public class UIController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.6f);
         PlayerWhenStart.instance.setLevel(PlayerWhenStart.instance.level);
+        
         Player.transform.position = new Vector3(0, 3, 0);
         Player.transform.rotation = Quaternion.Euler(0, 0, 0);
         if (PlayerWhenStart.instance.level != 4 && PlayerWhenStart.instance.level != 5)

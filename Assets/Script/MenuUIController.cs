@@ -13,8 +13,9 @@ public class MenuUIController : MonoBehaviour
     [SerializeField] Button start;
     [SerializeField] UIElement transLevel;
     [SerializeField] UIElement settingDiaLog;
-
     
+
+
     bool isOpen = false;
 
     // Start is called before the first frame update

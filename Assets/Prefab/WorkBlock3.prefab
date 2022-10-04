@@ -129,7 +129,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 172866, guid: 1e6518a79d4c5bd4d818dce298e3cabf, type: 3}
       propertyPath: m_TagString
-      value: Finish
+      value: Done
       objectReference: {fileID: 0}
     - target: {fileID: 488512, guid: 1e6518a79d4c5bd4d818dce298e3cabf, type: 3}
       propertyPath: m_RootOrder
@@ -199,6 +199,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 7405300065825113577, guid: ccff13ebf8b2246beb638f02d883af52, type: 3}
+    - target: {fileID: 11453584, guid: 1e6518a79d4c5bd4d818dce298e3cabf, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e6518a79d4c5bd4d818dce298e3cabf, type: 3}
 --- !u!4 &5072632053240057411 stripped

@@ -20,9 +20,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform right;
     [SerializeField] Transform forward;
     [SerializeField] Transform back;
+    
     [SerializeField] private float rollSpeed = 3;
 
-
+    public bool isStayOnBrick = true;
+    public bool isOnBrick = true;
     public Swipe swipeController;
     public List<GameObject> cloneBrick = new List<GameObject>();
 
@@ -72,8 +74,15 @@ public class PlayerController : MonoBehaviour
         getInputClonePlayer();
         getInput();
         CheckSwipe();
+        if (!isOnBrick && !isStayOnBrick)
+        {
+            transform.GetComponent<Rigidbody>().isKinematic = false;
+        }
+        else
+        {
+            transform.GetComponent<Rigidbody>().isKinematic = true;
+        }
 
-        
     }
 
     private void FixedUpdate()
@@ -245,16 +254,8 @@ public class PlayerController : MonoBehaviour
     [System.Obsolete]
     private void OnTriggerEnter(Collider other)
     {
-        if(other.transform.tag == "Finish")
-        {
-            for (int i = 0; i < cloneBrick.Count; i++)
-            {
-                cloneBrick[i].GetComponent<TweenPlayer>().ForcePlayBackRuntime();
-                //yield return new WaitForSeconds(0.4f);
-                Destroy(cloneBrick[i]);
-            }
-        }
-        if (other.transform.tag == "Clone")
+        
+         if (other.transform.tag == "Clone")
         {
             Debug.Log("va cham tai " + other.transform.position);
 
@@ -268,13 +269,14 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("khong nhan input o phia " + other.transform.position.x  +" ,0, 0)" );
             }
         }
-        if(other.transform.tag == "DeadZone")
+        else if(other.transform.tag == "DeadZone")
         {
             //UIController.instance.reload();
             GenMap.instance.DestroyMap();
             GenMap.instance.DestroyTool();
             StartCoroutine(PlayerController.instance.destroyClone());
             PlayerWhenStart.instance.setLevel(PlayerWhenStart.instance.level);
+            Player.transform.GetComponent<Rigidbody>().isKinematic = true;
             Player.transform.position = new Vector3(0, 3, 0);
             Player.transform.rotation = Quaternion.Euler(0, 0, 0);
             if (PlayerWhenStart.instance.level != 4 && PlayerWhenStart.instance.level != 5)
@@ -282,7 +284,14 @@ public class PlayerController : MonoBehaviour
                 winCheck.instance.checkWin();
             }
         }
-        
+
+        else if (other.transform.tag == "check")
+        {
+            isOnBrick = true;
+            //isStayOnBrick = true;
+        }
+
+
     }
 
     void CheckSwipe()
@@ -291,7 +300,7 @@ public class PlayerController : MonoBehaviour
 
         if (isClone && (PlayerWhenStart.instance.numberOfClone > 0))
         {
-            if (swipeController.SwipeLeft)
+            if (swipeController.SwipeLeft && !isBlockOnTheLeft)
             {
                 Debug.Log("Clone left");
                 cloneBrickPlayer(left);
@@ -299,21 +308,21 @@ public class PlayerController : MonoBehaviour
 
                 //rollDirection(Vector3.left);
             }
-            if (swipeController.SwipeRight)
+            if (swipeController.SwipeRight && !isBlockOnTheRight) 
             {
                 Debug.Log("Clone right");
                 cloneBrickPlayer(right);
                 PlayerWhenStart.instance.numberOfClone--;
                 //rollDirection(Vector3.right);
             }
-            if (swipeController.SwipeDown)
+            if (swipeController.SwipeDown && !isBlockBack)
             {
                 Debug.Log("Clone back");
                 cloneBrickPlayer(back);
                 PlayerWhenStart.instance.numberOfClone--;
                 //rollDirection(Vector3.back);
             }
-            if (swipeController.SwipeUp)
+            if (swipeController.SwipeUp && !isBlockFoward)
             {
                 Debug.Log("Clone forward");
                 cloneBrickPlayer(forward);
@@ -348,19 +357,19 @@ public class PlayerController : MonoBehaviour
         }
         else if (!isClone)
         {
-            if (swipeController.SwipeLeft)
+            if (swipeController.SwipeLeft && !isBlockOnTheLeft)
             {
                 rollDirection(Vector3.left);
             }
-            if (swipeController.SwipeRight)
+            if (swipeController.SwipeRight && !isBlockOnTheRight)
             {
                 rollDirection(Vector3.right);
             }
-            if (swipeController.SwipeDown)
+            if (swipeController.SwipeDown && !isBlockBack) 
             {
                 rollDirection(Vector3.back);
             }
-            if (swipeController.SwipeUp)
+            if (swipeController.SwipeUp && !isBlockFoward)
             {
                 rollDirection(Vector3.forward);
             }
@@ -368,5 +377,25 @@ public class PlayerController : MonoBehaviour
         
 
     }
-    
+    //private void OnTRExit(Collision collision)
+    //{
+        
+    //}
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.transform.tag == "check")
+        {
+            isOnBrick = false;
+            isStayOnBrick = false;
+        }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.transform.tag == "check")
+        {
+            //isOnBrick = true;
+            isStayOnBrick = true;
+        }
+    }
+
 }

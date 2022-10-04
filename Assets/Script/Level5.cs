@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Level5 : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class Level5 : MonoBehaviour
     public static Level5 instance;
     public Vector2 sizeOfLevel5;
     public GameObject player;
+    public TextMeshProUGUI text;
 
     public int[] countRow = new int[5];
     public int[] countColumn = new int[5];
@@ -49,7 +51,9 @@ public class Level5 : MonoBehaviour
     }
     private void OnEnable()
     {
+        
         player.transform.position = new Vector3(0, 3, 0);
+        text.text = "Presum the cube is the queen., let solve the n-queen problem (4x4)";
     }
 
     // Update is called once per frame

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using EazyEngine.UI;
 
 public class Level3 : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class Level3 : MonoBehaviour
     public Vector2 sizeOfLevel3;
     public GameObject switchGate;
     [SerializeField] GameObject brick;
+    [SerializeField] UIElement dialog;
+    [SerializeField] GameObject lv3;
+    [SerializeField] GameObject lv1;
+    [SerializeField] GameObject lv4;
     [SerializeField] TextMeshProUGUI textlv3;
    
     private void Awake()
@@ -21,6 +26,10 @@ public class Level3 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+
+
+        player.transform.GetComponent<Rigidbody>().isKinematic = true;
         player.transform.position = new Vector3(0, 3, 0);
         
 
@@ -28,7 +37,12 @@ public class Level3 : MonoBehaviour
 
     private void OnEnable()
     {
-        textlv3.text = "";
+        lv3.SetActive(true);
+        lv1.SetActive(false);
+        lv4.SetActive(false);
+        dialog.show();
+        
+        textlv3.text = " Combine with Put button to put another cube in the right position";
         player.transform.position = new Vector3(0, 3, 0);
        
     }
@@ -70,7 +84,7 @@ public class Level3 : MonoBehaviour
     {
         yield return new WaitForSeconds(0.3f);
         int positionOfSwitch;
-        positionOfSwitch = Random.RandomRange(1, GenMap.instance.positionOfBrick.Count / 2);
+        positionOfSwitch = Random.RandomRange(1, GenMap.instance.positionOfBrick.Count / 3);
         cloneSwitch(GenMap.instance.positionOfBrick[positionOfSwitch].transform.position);
     }
    

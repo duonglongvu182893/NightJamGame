@@ -17,7 +17,7 @@ public class backColider : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.transform.tag != "Player")
+        if(other.transform.tag != "Player" && other.transform.tag != "check")
         {
             PlayerController.instance.isBlockBack = true;
         }
@@ -25,7 +25,7 @@ public class backColider : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.transform.tag != "Player")
+        if (other.transform.tag != "Player" && other.transform.tag != "check")
         {
             PlayerController.instance.isBlockBack = false;
         }

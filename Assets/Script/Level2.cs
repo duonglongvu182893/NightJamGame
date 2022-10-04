@@ -25,6 +25,7 @@ public class Level2 : MonoBehaviour
     }
     private void OnEnable()
     {
+        
         player.transform.position = new Vector3(0, 3, 0);
         StartCoroutine(delayWin());
         textlv2.text = "Swipe your screne to move, use tool on the Way";
@@ -39,10 +40,7 @@ public class Level2 : MonoBehaviour
 
     [System.Obsolete]
     public void selectLevel2(Vector2 size)
-    {
-        //numberOfDisbaleBrick.Add(Mathf.FloorToInt((size.x - 1) + size.y * sizeOfLevel2.x));
-        //numberOfDisbaleBrick.Add(Mathf.FloorToInt((size.x - 1) + (size.y - 1) * sizeOfLevel2.x));
-        //numberOfDisbaleBrick.Add(Mathf.FloorToInt(size.x + (size.y - 1) * sizeOfLevel2.x));
+    { 
         numberOfDisbaleBrick.Add(22);
         numberOfDisbaleBrick.Add(18);
         numberOfDisbaleBrick.Add(19);
@@ -70,7 +68,8 @@ public class Level2 : MonoBehaviour
     {
         yield return new WaitForSeconds(0.3f);
         int positionOfSwitch;
-        positionOfSwitch = Random.RandomRange(1, GenMap.instance.positionOfBrick.Count/2);
+        
+        positionOfSwitch = Random.RandomRange(1, GenMap.instance.positionOfBrick.Count/3);
         cloneSwitch(GenMap.instance.positionOfBrick[positionOfSwitch].transform.position);
     }
     IEnumerator delayWin()

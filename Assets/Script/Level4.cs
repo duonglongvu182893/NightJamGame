@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EazyEngine.UI;
+using TMPro;
 
 public class Level4 : MonoBehaviour
 {
@@ -8,6 +10,12 @@ public class Level4 : MonoBehaviour
     public static Level4 instance;
     public Vector2 sizeOfLevel4;
     public GameObject player;
+    public TextMeshProUGUI text;
+
+    [SerializeField] UIElement dialog;
+    [SerializeField] GameObject lv4;
+    [SerializeField] GameObject lv1;
+    [SerializeField] GameObject lv3;
 
     public int[] countRow = new int[4];
     public int[] countColumn = new int[4];
@@ -47,7 +55,13 @@ public class Level4 : MonoBehaviour
     }
     private void OnEnable()
     {
+        lv1.SetActive(false);
+        lv3.SetActive(false);
+        lv4.SetActive(true);
+        dialog.show();
+        
         player.transform.position = new Vector3(0, 3, 0);
+        text.text = "Presum the cube is the queen., let solve the n-queen problem (4x4)";
     }
     // Update is called once per frame
     [System.Obsolete]

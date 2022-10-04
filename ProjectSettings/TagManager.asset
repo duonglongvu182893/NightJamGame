@@ -12,6 +12,8 @@ TagManager:
   - Clone
   - Gate
   - DeadZone
+  - check
+  - Done
   layers:
   - Default
   - TransparentFX
