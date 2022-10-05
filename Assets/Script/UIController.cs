@@ -18,6 +18,11 @@ public class UIController : MonoBehaviour
     [SerializeField] UIElement reloadTrans;
     [SerializeField] UIElement guideDialog;
     [SerializeField] UIElement settingDialog;
+    [SerializeField] GameObject buttonOndiaglog;
+    [SerializeField] GameObject buttonOnSetting;
+    [SerializeField] Sprite buttonOn;
+    [SerializeField] Sprite buttonOff;
+
     [SerializeField] GameObject lv1;
     [SerializeField] GameObject lv3;
     [SerializeField] GameObject lv4;
@@ -25,6 +30,7 @@ public class UIController : MonoBehaviour
     [SerializeField] Slider slideBG;
 
     [SerializeField] TextMeshProUGUI level;
+    [SerializeField] TextMeshProUGUI numberCube;
 
     [SerializeField] TweenPlayer testTing;
     [SerializeField] GameObject Player;
@@ -35,6 +41,8 @@ public class UIController : MonoBehaviour
     [SerializeField] Button Guild;
     [SerializeField] Button Sellection;
     [SerializeField] Button PutButton;
+    [SerializeField] Button menuButton;
+    
 
     public bool isSellectionIsOpen = false;
     public bool isSGuildIsOpen = false;
@@ -59,7 +67,20 @@ public class UIController : MonoBehaviour
     void Update()
     {
         level.text = PlayerWhenStart.instance.level.ToString();
+        numberCube.text = PlayerWhenStart.instance.numberOfClone.ToString();
         //startUITextButton();
+        if (slideBG.value == 0)
+        {
+            buttonOndiaglog.GetComponent<Image>().sprite = buttonOff;
+            buttonOnSetting.GetComponent<Image>().sprite = buttonOff;
+
+        }
+        else if (slideBG.value > 0)
+        {
+            buttonOndiaglog.GetComponent<Image>().sprite = buttonOn;
+            buttonOnSetting.GetComponent<Image>().sprite = buttonOn;
+
+        }
     }
     public void startUITextButton()
     {
@@ -122,6 +143,7 @@ public class UIController : MonoBehaviour
             PlayerController.instance.isUsingUI = true;
             Sellection.interactable = false;
             Resset.interactable = false;
+            menuButton.interactable = false;
             PutButton.interactable = false;
         }
         else if (isSettingIsOpen)
@@ -130,6 +152,7 @@ public class UIController : MonoBehaviour
             isSettingIsOpen = false;
             Sellection.interactable = true;
             Resset.interactable = true;
+            menuButton.interactable = true ;
             PutButton.interactable = true;
             PlayerController.instance.isUsingUI = false;
         }
@@ -200,5 +223,10 @@ public class UIController : MonoBehaviour
     {
         PlayerPrefs.SetFloat("musicVolume", slideBG.value);
     }
-    
+    public void offMusic()
+    {
+        slideBG.value = 0;
+       
+    }
+
 }

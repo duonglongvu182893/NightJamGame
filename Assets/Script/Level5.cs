@@ -57,9 +57,15 @@ public class Level5 : MonoBehaviour
     {
         
         player.transform.position = new Vector3(0, 3, 0);
-        text.text = "Presum the cube is the queen., let solve the n-queen problem (4x4)";
+        text.text = "Presum the cube is the queen., let solve the n-queen problem (5x5)";
     }
 
+    [System.Obsolete]
+    private void FixedUpdate()
+    {
+        checkWin();
+
+    }
     // Update is called once per frame
     [System.Obsolete]
     void Update()
@@ -315,7 +321,7 @@ public class Level5 : MonoBehaviour
             win.SetActive(true);
 
         }
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.5f);
     }
     public void resetLevel5()
     {

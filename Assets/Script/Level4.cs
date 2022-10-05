@@ -63,6 +63,13 @@ public class Level4 : MonoBehaviour
         player.transform.position = new Vector3(0, 3, 0);
         text.text = "Presum the cube is the queen., let solve the n-queen problem (4x4)";
     }
+
+    [System.Obsolete]
+    private void FixedUpdate()
+    {
+        checkWin();
+
+    }
     // Update is called once per frame
     [System.Obsolete]
     void Update()
@@ -309,7 +316,7 @@ public class Level4 : MonoBehaviour
     [System.Obsolete]
     IEnumerator delay()
     {
-        //yield return new WaitForSeconds(0.3f);
+        //yield return new WaitForSeconds(1f);
         if (PlayerWhenStart.instance.numberOfClone <= 0 && (!r || !c || !mUD || !mDD || !uD || !dD))
         {
             //StartCoroutine(PlayerController.instance.destroyClone());
@@ -320,7 +327,7 @@ public class Level4 : MonoBehaviour
             //PlayerPrefs.SetInt("Level", 5);
 
         }
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(1f);
     }
     public void resetLevel4()
     {

@@ -13,7 +13,11 @@ public class MenuUIController : MonoBehaviour
     [SerializeField] Button start;
     [SerializeField] UIElement transLevel;
     [SerializeField] UIElement settingDiaLog;
-    
+    [SerializeField] Slider slidebg;
+    [SerializeField] GameObject button;
+    [SerializeField] Sprite buttonOn;
+    [SerializeField] Sprite buttonOff;
+
 
 
     bool isOpen = false;
@@ -22,12 +26,38 @@ public class MenuUIController : MonoBehaviour
     void Start()
     {
         StartCoroutine(delay());
+        if (!PlayerPrefs.HasKey("musicVolume"))
+        {
+            PlayerPrefs.SetFloat("musicVolume", 1);
+            Load();
+        }
+        else
+        {
+            Load();
+        }
+        //if (slidebg.value == 0)
+        //{
+        //    button.GetComponent<Image>().sprite = buttonOff;
+            
+        //}
+        //else if (slidebg.value > 0)
+        //{
+        //    button.GetComponent<Image>().sprite = buttonOn;
+        //}
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (slidebg.value == 0)
+        {
+            button.GetComponent<Image>().sprite = buttonOff;
+
+        }
+        else if (slidebg.value > 0)
+        {
+            button.GetComponent<Image>().sprite = buttonOn;
+        }
     }
     IEnumerator delay()
     {
@@ -63,5 +93,23 @@ public class MenuUIController : MonoBehaviour
         }
 
 
+    }
+    public void changeVolume()
+    {
+        AudioListener.volume = slidebg.value;
+        save();
+    }
+    public void Load()
+    {
+        slidebg.value = PlayerPrefs.GetFloat("musicVolume");
+    }
+    public void save()
+    {
+        PlayerPrefs.SetFloat("musicVolume", slidebg.value);
+    }
+    public void offMusic()
+    {
+        slidebg.value = 0;
+        //button.GetComponent<Image>().sprite = buttonOff;
     }
 }

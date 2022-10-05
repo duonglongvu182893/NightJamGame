@@ -30,14 +30,7 @@ public class Level2 : MonoBehaviour
         StartCoroutine(delayWin());
         textlv2.text = "Swipe your screne to move, use tool on the Way";
     }
-    [System.Obsolete]
     
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     [System.Obsolete]
     public void selectLevel2(Vector2 size)
     { 
