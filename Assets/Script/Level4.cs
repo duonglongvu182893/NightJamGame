@@ -317,7 +317,7 @@ public class Level4 : MonoBehaviour
             GenMap.instance.DestroyTool();
             PlayerWhenStart.instance.level = 5;
             StartCoroutine(PlayerWhenStart.instance.destroyOldPlatform(PlayerWhenStart.instance.level));
-
+            //PlayerPrefs.SetInt("Level", 5);
 
         }
         yield return new WaitForSeconds(0.3f);

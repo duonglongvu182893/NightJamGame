@@ -21,6 +21,8 @@ public class UIController : MonoBehaviour
     [SerializeField] GameObject lv3;
     [SerializeField] GameObject lv4;
 
+    [SerializeField] Slider slideBG;
+
     [SerializeField] TextMeshProUGUI level;
 
     [SerializeField] TweenPlayer testTing;
@@ -38,8 +40,18 @@ public class UIController : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
+    {   
         startUITextButton();
+        if (!PlayerPrefs.HasKey("musicVolume"))
+        {
+            PlayerPrefs.SetFloat("musicVolume", 1);
+            Load();
+        }
+        else
+        {
+            Load();
+        }
+        //slideEf.onValueChanged.AddListener(val => SoundManager.instance.changeMasterVolume(val));
     }
     // Update is called once per frame
     void Update()
@@ -147,6 +159,19 @@ public class UIController : MonoBehaviour
             winCheck.instance.checkWin();
         }
 
+    }
+    public void changeVolume()
+    {
+        AudioListener.volume = slideBG.value;
+        save();
+    }
+    public void Load()
+    {
+        slideBG.value = PlayerPrefs.GetFloat("musicVolume");
+    }
+    public void save()
+    {
+        PlayerPrefs.SetFloat("musicVolume", slideBG.value);
     }
     
 }

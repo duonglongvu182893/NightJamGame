@@ -6,6 +6,8 @@ public class PlayerWhenStart : MonoBehaviour
 {
     public static PlayerWhenStart instance;
 
+    public int currentLevel;
+
     private void Awake()
     {
         instance = this;
@@ -23,7 +25,12 @@ public class PlayerWhenStart : MonoBehaviour
     [System.Obsolete]
     private void Start()
     {
+        //Level = PlayerPrefs.SetInt
         setLevel(level);
+    }
+    private void Update()
+    {
+        //currentLevel = PlayerPrefs.GetInt("Level");
     }
 
     public void setNumber(int levelA, Vector2 numberLevel, int numberOfcloneBrick)

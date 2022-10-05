@@ -20,7 +20,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform right;
     [SerializeField] Transform forward;
     [SerializeField] Transform back;
-    
+    [SerializeField] AudioClip clip;
+
     [SerializeField] private float rollSpeed = 3;
 
     public bool isStayOnBrick = true;
@@ -347,18 +348,22 @@ public class PlayerController : MonoBehaviour
             if (swipeController.SwipeLeft && !isBlockOnTheLeft)
             {
                 rollDirection(Vector3.left);
+                SoundManager.instance.PlaySound(clip);
             }
             if (swipeController.SwipeRight && !isBlockOnTheRight)
             {
                 rollDirection(Vector3.right);
+                SoundManager.instance.PlaySound(clip);
             }
             if (swipeController.SwipeDown && !isBlockBack) 
             {
                 rollDirection(Vector3.back);
+                SoundManager.instance.PlaySound(clip);
             }
             if (swipeController.SwipeUp && !isBlockFoward)
             {
                 rollDirection(Vector3.forward);
+                SoundManager.instance.PlaySound(clip);
             }
         }
         
