@@ -31,6 +31,8 @@ public class PlayerWhenStart : MonoBehaviour
         level = levelA;
         levelNumber = numberLevel;
         numberOfClone = numberOfcloneBrick;
+
+        
     }
 
     [System.Obsolete]
@@ -56,10 +58,13 @@ public class PlayerWhenStart : MonoBehaviour
     [System.Obsolete]
     public IEnumerator destroyOldPlatform(int level)
     {
-        yield return new WaitForSeconds(0.5f);
-       
         GenMap.instance.DestroyMap();
+        yield return new WaitForSeconds(0.5f);
+
+        //GenMap.instance.DestroyMap();
 
         setLevel(level);
+
+
     }
 }
