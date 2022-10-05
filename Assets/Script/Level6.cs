@@ -31,6 +31,7 @@ public class Level6 : MonoBehaviour
         transform.position = new Vector3(0, 3, 0);
     }
 
+    //create map NxN
     [System.Obsolete]
     public void createMatrixNxN(Vector2 size)
     {
@@ -52,6 +53,8 @@ public class Level6 : MonoBehaviour
         }
 
     }
+
+    //check Win level6
     public void setUpLevel6()
     {
         for(int i = 0; i < sizeOfLevel6.x; i++)
