@@ -19,6 +19,8 @@ public class GenMap : MonoBehaviour
         public bool disableBrick = false;
 
         public bool istouch = false;
+
+        public bool choosenBrick = false;
     }
     [SerializeField] GameObject brick;
     [SerializeField] GameObject fallBrick;
@@ -35,6 +37,7 @@ public class GenMap : MonoBehaviour
     public List<GameObject> positionOfBrick;
     public List<GameObject> brickDisable;
     public List<GameObject> tool;
+    //public List<GameObject> choosenBrick;
     public List<int> numberOfDisbaleBrick;
     
 
@@ -88,6 +91,10 @@ public class GenMap : MonoBehaviour
                         }
 
                     }
+                    //else if (currenCell.choosenBrick)
+                    //{
+
+                    //}
                     else
                     {
                         GameObject newWay = Instantiate(brick, new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity);
@@ -99,6 +106,10 @@ public class GenMap : MonoBehaviour
                             brickDisable.Add(newWay);
                             positionOfBrick.Add(newWay);
                         }
+                        //if (currenCell.choosenBrick)
+                        //{
+                        //    choosenBrick.Add(newWay);
+                        //}
 
                     }
 
@@ -123,6 +134,7 @@ public class GenMap : MonoBehaviour
 
             }
         }
+        
 
     }
 
@@ -172,13 +184,14 @@ public class GenMap : MonoBehaviour
                 }
             case 5:
                 {
-                    //
+                    PlayerWhenStart.instance.level = 5;
                     Level5.instance.createMatrixNxN(size);
                     break;
                 }
             case 6:
                 {
-                    win.SetActive(true);
+                    Level6.instance.createMatrixNxN(size);
+
                     break;
                 }
             case 7:

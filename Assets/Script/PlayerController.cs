@@ -247,16 +247,16 @@ public class PlayerController : MonoBehaviour
         
          if (other.transform.tag == "Clone")
         {
-            Debug.Log("va cham tai " + other.transform.position);
+            //Debug.Log("va cham tai " + other.transform.position);
 
 
             if (other.transform.position.x == transform.position.x)
             {
-                Debug.Log("khong nhan input o phia " + "(0, 0, " + other.transform.position.z +")");
+                //Debug.Log("khong nhan input o phia " + "(0, 0, " + other.transform.position.z +")");
             }
             if (other.transform.position.z == transform.position.z)
             {
-                Debug.Log("khong nhan input o phia " + other.transform.position.x  +" ,0, 0)" );
+                //Debug.Log("khong nhan input o phia " + other.transform.position.x  +" ,0, 0)" );
             }
         }
         else if(other.transform.tag == "DeadZone")

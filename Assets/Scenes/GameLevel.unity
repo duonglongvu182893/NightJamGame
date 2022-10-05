@@ -2661,7 +2661,7 @@ RectTransform:
   m_Children:
   - {fileID: 1558869483}
   m_Father: {fileID: 943407664}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -4619,7 +4619,7 @@ RectTransform:
   - {fileID: 1262430730}
   - {fileID: 233801083}
   m_Father: {fileID: 943407664}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5528,10 +5528,10 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 314989805}
-  - {fileID: 1019109425}
   - {fileID: 809873878}
   - {fileID: 1935553323}
   - {fileID: 604742746}
+  - {fileID: 1019109425}
   m_Father: {fileID: 962288033}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6322,7 +6322,7 @@ RectTransform:
   - {fileID: 1487354476}
   - {fileID: 74645620}
   m_Father: {fileID: 943407664}
-  m_RootOrder: 1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -8096,6 +8096,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eed53a000dc204ae6800b1cc504e3815, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 0}
   sizeOfLevel6: {x: 0, y: 0}
   text: {fileID: 0}
 --- !u!1 &1442079090
@@ -10284,13 +10285,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1823465037}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -11240,7 +11241,7 @@ RectTransform:
   - {fileID: 414130028}
   - {fileID: 1823465038}
   m_Father: {fileID: 943407664}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -12039,7 +12040,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentLevel: 0
   numberOfClone: 3
-  level: 1
+  level: 6
   levelNumber: {x: 3, y: 6}
   levelOj:
   - {fileID: 1517667650}

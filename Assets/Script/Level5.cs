@@ -41,7 +41,7 @@ public class Level5 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player.GetComponent<PlayerController>();
+        //player.GetComponent<PlayerController>();
         player.transform.position = new Vector3(0, 3, 0);
         for (int i = 0; i < 5; i++)
         {

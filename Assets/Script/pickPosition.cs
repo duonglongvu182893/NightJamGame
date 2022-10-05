@@ -10,8 +10,8 @@ public class pickPosition : MonoBehaviour
     void Start()
     {
         setPosition();
-        
-        if (PlayerWhenStart.instance.level == 4)
+
+        if (PlayerWhenStart.instance.level == 4 && PlayerWhenStart.instance.level == 6) 
         {
             GenMapWithPosition(i, j, Level4.instance.sizeOfLevel4);
         }
