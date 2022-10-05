@@ -17,6 +17,7 @@ public class UIController : MonoBehaviour
     [SerializeField] UIElement loadTrans;
     [SerializeField] UIElement reloadTrans;
     [SerializeField] UIElement guideDialog;
+    [SerializeField] UIElement settingDialog;
     [SerializeField] GameObject lv1;
     [SerializeField] GameObject lv3;
     [SerializeField] GameObject lv4;
@@ -37,6 +38,7 @@ public class UIController : MonoBehaviour
 
     public bool isSellectionIsOpen = false;
     public bool isSGuildIsOpen = false;
+    public bool isSettingIsOpen = false;
 
     // Start is called before the first frame update
     void Start()
@@ -73,6 +75,7 @@ public class UIController : MonoBehaviour
         {
             sellectionButton.show();
             isSellectionIsOpen = true;
+            PlayerController.instance.isUsingUI = true;
             Guild.interactable = false;
             Resset.interactable = false;
             PutButton.interactable = false;
@@ -85,6 +88,7 @@ public class UIController : MonoBehaviour
             Guild.interactable = true;
             Resset.interactable = true;
             PutButton.interactable = true;
+            PlayerController.instance.isUsingUI = false;
         }
         
     }
@@ -94,6 +98,7 @@ public class UIController : MonoBehaviour
         {
             guildButton.show();
             isSGuildIsOpen = true;
+            PlayerController.instance.isUsingUI = true;
             Sellection.interactable = false;
             Resset.interactable = false;
             PutButton.interactable = false;
@@ -105,6 +110,28 @@ public class UIController : MonoBehaviour
             Sellection.interactable = true;
             Resset.interactable = true;
             PutButton.interactable = true;
+            PlayerController.instance.isUsingUI = false;
+        }
+    }
+    public void openSettingButton()
+    {
+        if (!isSettingIsOpen)
+        {
+            settingDialog.show();
+            isSettingIsOpen = true;
+            PlayerController.instance.isUsingUI = true;
+            Sellection.interactable = false;
+            Resset.interactable = false;
+            PutButton.interactable = false;
+        }
+        else if (isSettingIsOpen)
+        {
+            settingDialog.close();
+            isSettingIsOpen = false;
+            Sellection.interactable = true;
+            Resset.interactable = true;
+            PutButton.interactable = true;
+            PlayerController.instance.isUsingUI = false;
         }
     }
     public void transToMenu()

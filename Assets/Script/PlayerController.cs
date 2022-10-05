@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
 
     public bool isClone = false;
     public bool isMoving = false;
+    public bool isUsingUI = false;
 
     public bool isBlockOnTheLeft = false;
     public bool isBlockOnTheRight = false;
@@ -286,87 +287,90 @@ public class PlayerController : MonoBehaviour
     void CheckSwipe()
     {
         if (isMoving) return;
-
-        if (isClone && (PlayerWhenStart.instance.numberOfClone > 0))
+        if (!isUsingUI)
         {
-            if (swipeController.SwipeLeft && !isBlockOnTheLeft)
+            if (isClone && (PlayerWhenStart.instance.numberOfClone > 0))
             {
-                Debug.Log("Clone left");
-                cloneBrickPlayer(left);
-                PlayerWhenStart.instance.numberOfClone--;
+                if (swipeController.SwipeLeft && !isBlockOnTheLeft)
+                {
+                    Debug.Log("Clone left");
+                    cloneBrickPlayer(left);
+                    PlayerWhenStart.instance.numberOfClone--;
+
+                }
+                if (swipeController.SwipeRight && !isBlockOnTheRight)
+                {
+                    Debug.Log("Clone right");
+                    cloneBrickPlayer(right);
+                    PlayerWhenStart.instance.numberOfClone--;
+
+                }
+                if (swipeController.SwipeDown && !isBlockBack)
+                {
+                    Debug.Log("Clone back");
+                    cloneBrickPlayer(back);
+                    PlayerWhenStart.instance.numberOfClone--;
+
+                }
+                if (swipeController.SwipeUp && !isBlockFoward)
+                {
+                    Debug.Log("Clone forward");
+                    cloneBrickPlayer(forward);
+                    PlayerWhenStart.instance.numberOfClone--;
+
+                }
 
             }
-            if (swipeController.SwipeRight && !isBlockOnTheRight) 
+            if (isClone && (PlayerWhenStart.instance.numberOfClone <= 0))
             {
-                Debug.Log("Clone right");
-                cloneBrickPlayer(right);
-                PlayerWhenStart.instance.numberOfClone--;
-                
+                if (swipeController.SwipeLeft)
+                {
+                    Debug.Log("Can't Clone left");
+
+                }
+                if (swipeController.SwipeRight)
+                {
+                    Debug.Log("Can't Clone right");
+
+                }
+                if (swipeController.SwipeDown)
+                {
+                    Debug.Log("Can't Clone back");
+
+                }
+                if (swipeController.SwipeUp)
+                {
+                    Debug.Log("Can't Clone forward");
+
+                }
+
             }
-            if (swipeController.SwipeDown && !isBlockBack)
+            else if (!isClone)
             {
-                Debug.Log("Clone back");
-                cloneBrickPlayer(back);
-                PlayerWhenStart.instance.numberOfClone--;
-               
-            }
-            if (swipeController.SwipeUp && !isBlockFoward)
-            {
-                Debug.Log("Clone forward");
-                cloneBrickPlayer(forward);
-                PlayerWhenStart.instance.numberOfClone--;
-                
+                if (swipeController.SwipeLeft && !isBlockOnTheLeft)
+                {
+                    rollDirection(Vector3.left);
+                    
+                }
+                if (swipeController.SwipeRight && !isBlockOnTheRight)
+                {
+                    rollDirection(Vector3.right);
+                    
+                }
+                if (swipeController.SwipeDown && !isBlockBack)
+                {
+                    rollDirection(Vector3.back);
+                   
+                }
+                if (swipeController.SwipeUp && !isBlockFoward)
+                {
+                    rollDirection(Vector3.forward);
+                    
+                }
             }
 
         }
-        if (isClone && (PlayerWhenStart.instance.numberOfClone <= 0))
-        {
-            if (swipeController.SwipeLeft)
-            {
-                Debug.Log("Can't Clone left");
 
-            }
-            if (swipeController.SwipeRight)
-            {
-                Debug.Log("Can't Clone right");
-
-            }
-            if (swipeController.SwipeDown)
-            {
-                Debug.Log("Can't Clone back");
-
-            }
-            if (swipeController.SwipeUp)
-            {
-                Debug.Log("Can't Clone forward");
-
-            }
-
-        }
-        else if (!isClone)
-        {
-            if (swipeController.SwipeLeft && !isBlockOnTheLeft)
-            {
-                rollDirection(Vector3.left);
-                SoundManager.instance.PlaySound(clip);
-            }
-            if (swipeController.SwipeRight && !isBlockOnTheRight)
-            {
-                rollDirection(Vector3.right);
-                SoundManager.instance.PlaySound(clip);
-            }
-            if (swipeController.SwipeDown && !isBlockBack) 
-            {
-                rollDirection(Vector3.back);
-                SoundManager.instance.PlaySound(clip);
-            }
-            if (swipeController.SwipeUp && !isBlockFoward)
-            {
-                rollDirection(Vector3.forward);
-                SoundManager.instance.PlaySound(clip);
-            }
-        }
-        
 
     }
     
