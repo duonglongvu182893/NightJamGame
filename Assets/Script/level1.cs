@@ -18,6 +18,7 @@ public class level1 : MonoBehaviour
     [SerializeField] GameObject lv1;
     [SerializeField] GameObject lv3;
     [SerializeField] GameObject lv4;
+    [SerializeField] GameObject lv6;
 
     // Start is called before the first frame update
 
@@ -33,6 +34,7 @@ public class level1 : MonoBehaviour
         lv1.SetActive(true);
         lv3.SetActive(false);
         lv4.SetActive(false);
+        lv6.SetActive(false);
         dialog.show();
       
         player.transform.position = new Vector3(0, 3, 0);

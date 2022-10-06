@@ -31,6 +31,7 @@ public class UIController : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI level;
     [SerializeField] TextMeshProUGUI numberCube;
+    [SerializeField] TextMeshProUGUI countTime;
 
     [SerializeField] TweenPlayer testTing;
     [SerializeField] GameObject Player;
@@ -47,6 +48,8 @@ public class UIController : MonoBehaviour
     public bool isSellectionIsOpen = false;
     public bool isSGuildIsOpen = false;
     public bool isSettingIsOpen = false;
+
+    //public bool runLevel6 = false;
 
     // Start is called before the first frame update
     void Start()
@@ -228,5 +231,9 @@ public class UIController : MonoBehaviour
         slideBG.value = 0;
        
     }
+    //public void startLevel6
+    //{
+
+    //}
 
 }

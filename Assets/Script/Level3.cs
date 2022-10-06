@@ -16,6 +16,7 @@ public class Level3 : MonoBehaviour
     [SerializeField] GameObject lv3;
     [SerializeField] GameObject lv1;
     [SerializeField] GameObject lv4;
+    [SerializeField] GameObject lv6;
     [SerializeField] TextMeshProUGUI textlv3;
    
     private void Awake()
@@ -40,6 +41,7 @@ public class Level3 : MonoBehaviour
         lv3.SetActive(true);
         lv1.SetActive(false);
         lv4.SetActive(false);
+        lv6.SetActive(false);
         dialog.show();
         
         textlv3.text = " Combine with Put button to put another cube in the right position";

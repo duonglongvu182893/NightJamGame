@@ -275,12 +275,7 @@ public class Level5 : MonoBehaviour
             dD = dD || downDiagonal[i];
 
         }
-        //if (PlayerWhenStart.instance.numberOfClone == 0&&(!r||!c||!mUD||!mDD||!uD||!dD))
-        //{
-        //    StartCoroutine(PlayerController.instance.destroyClone());
-        //    StartCoroutine(GenMap.instance.delayMap());
-
-        //}
+        
         StartCoroutine(delay());
         ResetValue();
     }
@@ -318,7 +313,7 @@ public class Level5 : MonoBehaviour
             PlayerWhenStart.instance.level = 6;
             GenMap.instance.DestroyTool();
             StartCoroutine(PlayerWhenStart.instance.destroyOldPlatform(PlayerWhenStart.instance.level));
-            win.SetActive(true);
+            //win.SetActive(true);
 
         }
         yield return new WaitForSeconds(0.5f);

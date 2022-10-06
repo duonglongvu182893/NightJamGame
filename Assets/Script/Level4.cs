@@ -16,6 +16,7 @@ public class Level4 : MonoBehaviour
     [SerializeField] GameObject lv4;
     [SerializeField] GameObject lv1;
     [SerializeField] GameObject lv3;
+    [SerializeField] GameObject lv6;
 
     public int[] countRow = new int[4];
     public int[] countColumn = new int[4];
@@ -58,6 +59,7 @@ public class Level4 : MonoBehaviour
         lv1.SetActive(false);
         lv3.SetActive(false);
         lv4.SetActive(true);
+        lv6.SetActive(false);
         dialog.show();
         
         player.transform.position = new Vector3(0, 3, 0);
