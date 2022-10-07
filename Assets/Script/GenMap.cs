@@ -37,7 +37,7 @@ public class GenMap : MonoBehaviour
     public List<GameObject> positionOfBrick;
     public List<GameObject> brickDisable;
     public List<GameObject> tool;
-    //public List<GameObject> choosenBrick;
+    public List<GameObject> choosenBrick;
     public List<int> numberOfDisbaleBrick;
     
 
@@ -58,13 +58,14 @@ public class GenMap : MonoBehaviour
     [System.Obsolete]
     void Start()
     {
-        
+        //chosenBrick();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+        
     }
 
     [System.Obsolete]
@@ -106,10 +107,10 @@ public class GenMap : MonoBehaviour
                             brickDisable.Add(newWay);
                             positionOfBrick.Add(newWay);
                         }
-                        //if (currenCell.choosenBrick)
-                        //{
-                        //    choosenBrick.Add(newWay);
-                        //}
+                        if (currenCell.choosenBrick)
+                        {
+                            choosenBrick.Add(newWay);
+                        }
 
                     }
 
@@ -202,8 +203,19 @@ public class GenMap : MonoBehaviour
         }
 
         board[board.Count - 1].targetBrick = true;
-
+       
         createMaze(size);
+
+
+        //
+
+        //for(int i = 0; i < board.Count; i++)
+        //{
+        //    if (!board[i].choosenBrick)
+        //    {
+        //        choosenBrick.Add()
+        //    }
+        //}
     }
 
     [System.Obsolete]
@@ -281,7 +293,13 @@ public class GenMap : MonoBehaviour
     public void setTouch(int i, int j, Vector2 size)
     {
         board[Mathf.FloorToInt(i + j * size.x)].istouch = true;
-        Debug.Log(i + " " + j);
+
+        Debug.Log("o duoc chon la "+ Mathf.FloorToInt(i + j * size.x));
+
+        //if (board[Mathf.FloorToInt(i + j * size.x)].choosenBrick)
+        //{
+        //    Debug.Log("LEvel6 check");
+        //}
     }
     public void resetTouch()
     {
@@ -353,5 +371,7 @@ public class GenMap : MonoBehaviour
         }
         tool.Clear();
     }
+
+    
 
 }

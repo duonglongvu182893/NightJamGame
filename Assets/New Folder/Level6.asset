@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfLevel: 6
   des: 
-  size: {x: 4, y: 4}
+  size: {x: 5, y: 5}
   numberBrickCanClone: 3

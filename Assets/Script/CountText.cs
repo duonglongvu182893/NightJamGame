@@ -25,9 +25,13 @@ public class CountText : MonoBehaviour
             StartCoroutine(delay());
         }
     }
+    private void OnEnable()
+    {
+        currentTime = 5;
+    }
     IEnumerator delay()
     {
         yield return new WaitForSeconds(1f);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

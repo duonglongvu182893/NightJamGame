@@ -11,7 +11,7 @@ public class pickPosition : MonoBehaviour
     {
         setPosition();
 
-        if (PlayerWhenStart.instance.level == 4 && PlayerWhenStart.instance.level == 6) 
+        if (PlayerWhenStart.instance.level == 4) 
         {
             GenMapWithPosition(i, j, Level4.instance.sizeOfLevel4);
         }
@@ -20,6 +20,10 @@ public class pickPosition : MonoBehaviour
             GenMapWithPosition(i, j, Level5.instance.sizeOfLevel5);
 
         }
+        //else if(PlayerWhenStart.instance.level!=4&& PlayerWhenStart.instance.level!=5)
+        //{
+        //    GenMapWithPosition(i, j, Level6.instance.sizeOfLevel6);
+        //}
 
 
         transform.position = new Vector3(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y), Mathf.Round(transform.position.z));

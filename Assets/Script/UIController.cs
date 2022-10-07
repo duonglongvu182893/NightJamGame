@@ -18,6 +18,7 @@ public class UIController : MonoBehaviour
     [SerializeField] UIElement reloadTrans;
     [SerializeField] UIElement guideDialog;
     [SerializeField] UIElement settingDialog;
+    [SerializeField] UIElement startButtonLevel;
     [SerializeField] GameObject buttonOndiaglog;
     [SerializeField] GameObject buttonOnSetting;
     [SerializeField] Sprite buttonOn;
@@ -184,8 +185,12 @@ public class UIController : MonoBehaviour
         StartCoroutine(delayDestroy());
         StartCoroutine(PlayerController.instance.destroyClone());
         StartCoroutine(delay());
-       
 
+        if (PlayerWhenStart.instance.level > 5)
+        {
+            PlayerController.instance.isUsingUI = true;
+            startButtonLevel.show();
+        }
     }
     public void closeGuide()
     {

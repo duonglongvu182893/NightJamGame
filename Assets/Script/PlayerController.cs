@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EazyEngine.UI;
 using UnityExtensions.Tween;
 
 public class PlayerController : MonoBehaviour
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform forward;
     [SerializeField] Transform back;
     [SerializeField] AudioClip clip;
+    [SerializeField] UIElement startLevel6;
 
     [SerializeField] private float rollSpeed = 3;
 
@@ -236,7 +238,7 @@ public class PlayerController : MonoBehaviour
         {
             cloneBrick[i].GetComponent<TweenPlayer>().ForcePlayBackRuntime();
             yield return new WaitForSeconds(0.4f);
-             Destroy(cloneBrick[i]);
+            Destroy(cloneBrick[i]);
         }
         cloneBrick.Clear();
     }
@@ -269,9 +271,14 @@ public class PlayerController : MonoBehaviour
             Player.transform.GetComponent<Rigidbody>().isKinematic = true;
             Player.transform.position = new Vector3(0, 3, 0);
             Player.transform.rotation = Quaternion.Euler(0, 0, 0);
-            if (PlayerWhenStart.instance.level != 4 && PlayerWhenStart.instance.level != 5)
+            if (PlayerWhenStart.instance.level != 4 && PlayerWhenStart.instance.level != 5&& PlayerWhenStart.instance.level != 6)
             {
                 winCheck.instance.checkWin();
+            }
+            if (PlayerWhenStart.instance.level ==6  )
+            {
+                PlayerController.instance.isUsingUI = true;
+                startLevel6.show();
             }
         }
 
