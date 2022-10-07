@@ -313,6 +313,7 @@ public class Level5 : MonoBehaviour
             PlayerWhenStart.instance.level = 6;
             GenMap.instance.DestroyTool();
             StartCoroutine(PlayerWhenStart.instance.destroyOldPlatform(PlayerWhenStart.instance.level));
+            GenMap.instance.resetTouch();
             //win.SetActive(true);
 
         }

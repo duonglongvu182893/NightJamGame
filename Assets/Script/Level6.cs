@@ -14,6 +14,7 @@ public class Level6 : MonoBehaviour
     public GameObject pad;
     public bool runlevel6 = false;
     public GameObject win;
+    public int count = 0;
 
 
     [SerializeField] UIElement dialog;
@@ -23,6 +24,8 @@ public class Level6 : MonoBehaviour
     [SerializeField] GameObject lv4;
     [SerializeField] GameObject lv6;
     [SerializeField] GameObject countText;
+
+    public int[] number;
     private void Awake()
     {
         instance = this;
@@ -39,17 +42,97 @@ public class Level6 : MonoBehaviour
         dialog.show();
     }
     // Update is called once per frame
+    //[System.Obsolete]
+    //void Update()
+    //{
+    //    if (PlayerWhenStart.instance.numberOfClone == 0)
+    //    {
+    //        for (int i = 0; i < sizeOfLevel6.x; i++)
+    //        {
+    //            for (int j = 0; j < sizeOfLevel6.x; j++)
+    //            {
+    //                if (GenMap.instance.board[Mathf.FloorToInt(i + j * sizeOfLevel6.x)].istouch && GenMap.instance.board[Mathf.FloorToInt(i + j * sizeOfLevel6.x)].choosenBrick)
+    //                {
+    //                    count++;
+    //                    Debug.Log("dung");
+
+    //                }
+    //                else if (GenMap.instance.board[Mathf.FloorToInt(i + j * sizeOfLevel6.x)].istouch && !GenMap.instance.board[Mathf.FloorToInt(i + j * sizeOfLevel6.x)].choosenBrick)
+    //                {
+
+    //                    Debug.Log("sai");
+
+    //                }
+    //            }
+    //        }
+    //        if (count == 3)
+    //        { 
+    //            win.SetActive(true);
+    //        }
+    //        else
+    //        {
+    //            GenMap.instance.DestroyMap();
+    //            GenMap.instance.DestroyTool();
+    //            PlayerWhenStart.instance.setLevel(PlayerWhenStart.instance.level);
+    //            PlayerController.instance.isUsingUI = true;
+    //            startLEvel6.show();
+    //            Player.transform.GetComponent<Rigidbody>().isKinematic = true;
+    //            Player.transform.position = new Vector3(0, 3, 0);
+    //            Player.transform.rotation = Quaternion.Euler(0, 0, 0);
+    //            resetLevel6();
+    //            Debug.Log("so dem la" + count);
+    //            count = 0;
+    //        }
+    //    }
+    //}
+
     [System.Obsolete]
-    void Update()
+    private void FixedUpdate()
     {
         if (PlayerWhenStart.instance.numberOfClone == 0)
         {
-            setUpLevel6();
+            for (int i = 0; i < sizeOfLevel6.x; i++)
+            {
+                for (int j = 0; j < sizeOfLevel6.x; j++)
+                {
+                    if (GenMap.instance.board[Mathf.FloorToInt(i + j * sizeOfLevel6.x)].istouch && GenMap.instance.board[Mathf.FloorToInt(i + j * sizeOfLevel6.x)].choosenBrick)
+                    {
+                        count++;
+                        Debug.Log("dung");
+
+                    }
+                    else if (GenMap.instance.board[Mathf.FloorToInt(i + j * sizeOfLevel6.x)].istouch && !GenMap.instance.board[Mathf.FloorToInt(i + j * sizeOfLevel6.x)].choosenBrick)
+                    {
+
+                        Debug.Log("sai");
+
+                    }
+                }
+            }
+            if (count == 3)
+            {
+                win.SetActive(true);
+            }
+            else
+            {
+                GenMap.instance.DestroyMap();
+                GenMap.instance.DestroyTool();
+                PlayerWhenStart.instance.setLevel(PlayerWhenStart.instance.level);
+                PlayerController.instance.isUsingUI = true;
+                startLEvel6.show();
+                Player.transform.GetComponent<Rigidbody>().isKinematic = true;
+                Player.transform.position = new Vector3(0, 3, 0);
+                Player.transform.rotation = Quaternion.Euler(0, 0, 0);
+                resetLevel6();
+                Debug.Log("so dem la" + count);
+                count = 0;
+            }
         }
     }
-    
+
     private void OnEnable()
     {
+        count = 0;
         lv3.SetActive(false);
         lv1.SetActive(false);
         lv4.SetActive(false);
@@ -75,7 +158,6 @@ public class Level6 : MonoBehaviour
         {
             Vector3 position = chooseBrick(size);
             GameObject padClone = Instantiate(pad, position, Quaternion.identity);
-           
         }
         
   
@@ -114,41 +196,8 @@ public class Level6 : MonoBehaviour
     [System.Obsolete]
     public void setUpLevel6()
     {
-        int count = 0;
-        for (int i = 0; i < sizeOfLevel6.x; i++)
-        {
-            for (int j = 0; j < sizeOfLevel6.x; j++)
-            {
-                if (GenMap.instance.board[Mathf.FloorToInt(i + j * sizeOfLevel6.x)].istouch && GenMap.instance.board[Mathf.FloorToInt(i + j * sizeOfLevel6.x)].choosenBrick)
-                {
-                    count++;
-
-                }
-                else if (GenMap.instance.board[Mathf.FloorToInt(i + j * sizeOfLevel6.x)].istouch && !GenMap.instance.board[Mathf.FloorToInt(i + j * sizeOfLevel6.x)].choosenBrick)
-                {
-                    
-                    Debug.Log("sai");
-                    
-                }
-            }
-        }
-        if (count == 3)
-        {
-            win.SetActive(true);
-        }
-        else
-        {
-            GenMap.instance.DestroyMap();
-            GenMap.instance.DestroyTool();            
-            PlayerWhenStart.instance.setLevel(PlayerWhenStart.instance.level);
-            PlayerController.instance.isUsingUI = true;
-            startLEvel6.show();
-            Player.transform.GetComponent<Rigidbody>().isKinematic = true;
-            Player.transform.position = new Vector3(0, 3, 0);
-            Player.transform.rotation = Quaternion.Euler(0, 0, 0);
-            resetLevel6();
-
-        }
+        //count = 0;
+        
     }
 
     public void beginLevel6()
@@ -164,4 +213,8 @@ public class Level6 : MonoBehaviour
         PlayerWhenStart.instance.numberOfClone = 3;
     }
 
+    //IEnumerator delayLevel6()
+    //{
+
+    //}
 }
