@@ -44,24 +44,18 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         instance = this;
-      
- 
+
+
     }
     protected void OnDestroy()
-    { 
+    {
         if (instance == this)
         {
             instance = null;
         }
     }
-    // Start is called before the first frame update
-    void Start()
-    {
 
-       
-    }
-
-    // Update is called once per frame
+    //Update is called once per frame
     void Update()
     {
         getInputClonePlayer();
@@ -80,42 +74,53 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
+        getInputClonePlayer();
+        getInput();
+        CheckSwipe();
+        if (!isOnBrick && !isStayOnBrick)
+        {
+            transform.GetComponent<Rigidbody>().isKinematic = false;
+        }
+        else
+        {
+            transform.GetComponent<Rigidbody>().isKinematic = true;
+        }
+
     }
 
     private void getInput()
     {
         if (isMoving) return;
 
-        if (isClone && (PlayerWhenStart.instance.numberOfClone > 0)) 
+        if (isClone && (PlayerWhenStart.instance.numberOfClone > 0))
         {
-            if (Input.GetKeyDown(KeyCode.A) && !isBlockOnTheLeft) 
+            if (Input.GetKeyDown(KeyCode.A) && !isBlockOnTheLeft)
             {
                 Debug.Log("Clone left");
                 cloneBrickPlayer(left);
                 PlayerWhenStart.instance.numberOfClone--;
-              
+
             }
-            if (Input.GetKeyDown(KeyCode.D)&& !isBlockOnTheRight)
+            if (Input.GetKeyDown(KeyCode.D) && !isBlockOnTheRight)
             {
                 Debug.Log("Clone right");
                 cloneBrickPlayer(right);
                 PlayerWhenStart.instance.numberOfClone--;
-                
+
             }
-            if (Input.GetKeyDown(KeyCode.S) && !isBlockBack) 
+            if (Input.GetKeyDown(KeyCode.S) && !isBlockBack)
             {
                 Debug.Log("Clone back");
                 cloneBrickPlayer(back);
                 PlayerWhenStart.instance.numberOfClone--;
-                
+
             }
             if (Input.GetKeyDown(KeyCode.W) && !isBlockFoward)
             {
                 Debug.Log("Clone forward");
                 cloneBrickPlayer(forward);
                 PlayerWhenStart.instance.numberOfClone--;
-               
+
             }
 
         }
@@ -124,26 +129,26 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.A))
             {
                 Debug.Log("Can't Clone left");
-                
+
             }
             if (Input.GetKeyDown(KeyCode.D))
             {
                 Debug.Log("Can't Clone right");
-                
+
             }
             if (Input.GetKeyDown(KeyCode.S))
             {
                 Debug.Log("Can't Clone back");
-                
+
             }
             if (Input.GetKeyDown(KeyCode.W))
             {
                 Debug.Log("Can't Clone forward");
-                
+
             }
 
         }
-        else if(!isClone)
+        else if (!isClone)
         {
             if (Input.GetKeyDown(KeyCode.A) && !isBlockOnTheLeft)
             {
@@ -172,7 +177,7 @@ public class PlayerController : MonoBehaviour
         var axis = Vector3.Cross(Vector3.up, dir);
         StartCoroutine(Roll(anchor, axis));
     }
-        
+
 
 
     IEnumerator Roll(Vector3 anchor, Vector3 axis)
@@ -185,7 +190,7 @@ public class PlayerController : MonoBehaviour
         }
         transform.position = new Vector3(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y), Mathf.Round(transform.position.z));
         isMoving = false;
-        
+
     }
 
 
@@ -219,10 +224,10 @@ public class PlayerController : MonoBehaviour
 
     void cloneBrickPlayer(Transform position)
     {
-        
-            GameObject clonePlayer = Instantiate(cloneOfPlayer, position.position, Quaternion.identity);
-            cloneBrick.Add(clonePlayer);
-       
+
+        GameObject clonePlayer = Instantiate(cloneOfPlayer, position.position, Quaternion.identity);
+        cloneBrick.Add(clonePlayer);
+
     }
     public void deleteClone()
     {
@@ -234,7 +239,7 @@ public class PlayerController : MonoBehaviour
     }
     public IEnumerator destroyClone()
     {
-        for(int i = 0; i < cloneBrick.Count; i++)
+        for (int i = 0; i < cloneBrick.Count; i++)
         {
             cloneBrick[i].GetComponent<TweenPlayer>().ForcePlayBackRuntime();
             yield return new WaitForSeconds(0.4f);
@@ -246,8 +251,8 @@ public class PlayerController : MonoBehaviour
     [System.Obsolete]
     private void OnTriggerEnter(Collider other)
     {
-        
-         if (other.transform.tag == "Clone")
+
+        if (other.transform.tag == "Clone")
         {
             //Debug.Log("va cham tai " + other.transform.position);
 
@@ -261,9 +266,9 @@ public class PlayerController : MonoBehaviour
                 //Debug.Log("khong nhan input o phia " + other.transform.position.x  +" ,0, 0)" );
             }
         }
-        else if(other.transform.tag == "DeadZone")
+        else if (other.transform.tag == "DeadZone")
         {
-            
+
             GenMap.instance.DestroyMap();
             GenMap.instance.DestroyTool();
             StartCoroutine(PlayerController.instance.destroyClone());
@@ -271,11 +276,11 @@ public class PlayerController : MonoBehaviour
             Player.transform.GetComponent<Rigidbody>().isKinematic = true;
             Player.transform.position = new Vector3(0, 3, 0);
             Player.transform.rotation = Quaternion.Euler(0, 0, 0);
-            if (PlayerWhenStart.instance.level != 4 && PlayerWhenStart.instance.level != 5&& PlayerWhenStart.instance.level != 6)
+            if (PlayerWhenStart.instance.level != 4 && PlayerWhenStart.instance.level != 5 && PlayerWhenStart.instance.level != 6)
             {
                 winCheck.instance.checkWin();
             }
-            if (PlayerWhenStart.instance.level ==6  )
+            if (PlayerWhenStart.instance.level == 6)
             {
                 PlayerController.instance.isUsingUI = true;
                 startLevel6.show();
@@ -285,7 +290,7 @@ public class PlayerController : MonoBehaviour
         else if (other.transform.tag == "check")
         {
             isOnBrick = true;
-           
+
         }
 
 
@@ -357,22 +362,22 @@ public class PlayerController : MonoBehaviour
                 if (swipeController.SwipeLeft && !isBlockOnTheLeft)
                 {
                     rollDirection(Vector3.left);
-                    
+
                 }
                 if (swipeController.SwipeRight && !isBlockOnTheRight)
                 {
                     rollDirection(Vector3.right);
-                    
+
                 }
                 if (swipeController.SwipeDown && !isBlockBack)
                 {
                     rollDirection(Vector3.back);
-                   
+
                 }
                 if (swipeController.SwipeUp && !isBlockFoward)
                 {
                     rollDirection(Vector3.forward);
-                    
+
                 }
             }
 
@@ -380,7 +385,7 @@ public class PlayerController : MonoBehaviour
 
 
     }
-    
+
     private void OnTriggerExit(Collider other)
     {
         if (other.transform.tag == "check")
@@ -393,7 +398,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.transform.tag == "check")
         {
-            
+
             isStayOnBrick = true;
         }
     }
