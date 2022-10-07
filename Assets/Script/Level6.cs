@@ -34,7 +34,7 @@ public class Level6 : MonoBehaviour
     void Start()
     {
         transform.position = new Vector3(0, 3, 0);
-        
+        StartCoroutine(PlayerController.instance.delayFX());
         lv1.SetActive(false);
         lv3.SetActive(false);
         lv4.SetActive(false);

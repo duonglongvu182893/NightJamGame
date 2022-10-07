@@ -55,7 +55,8 @@ public class Level5 : MonoBehaviour
     }
     private void OnEnable()
     {
-        
+        StartCoroutine(PlayerController.instance.delayFX());
+
         player.transform.position = new Vector3(0, 3, 0);
         text.text = "Presum the cube is the queen., let solve the n-queen problem (5x5)";
     }

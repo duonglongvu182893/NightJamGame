@@ -8,6 +8,7 @@ using EazyEngine.UI;
 public class level1 : MonoBehaviour
 {
     public GameObject player;
+    public GameObject playerFx;
     public static level1 instance;
     public Vector2 sizeOfLevel1;
     public TextMeshProUGUI textlv1;
@@ -38,6 +39,7 @@ public class level1 : MonoBehaviour
         dialog.show();
       
         player.transform.position = new Vector3(0, 3, 0);
+        StartCoroutine(delayFX());
         StartCoroutine(delay());
 
         textlv1.text = "Swipe your screne to move ";
@@ -67,5 +69,11 @@ public class level1 : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         winCheck.instance.checkWin();
+    }
+    IEnumerator delayFX()
+    {
+        playerFx.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        playerFx.SetActive(false);
     }
 }

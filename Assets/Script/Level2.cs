@@ -7,6 +7,7 @@ public class Level2 : MonoBehaviour
 {
     public static Level2 instance;
 
+    
     public GameObject player;
     public List<int> numberOfDisbaleBrick ;
     public Vector2 sizeOfLevel2;
@@ -27,6 +28,7 @@ public class Level2 : MonoBehaviour
     {
         
         player.transform.position = new Vector3(0, 3, 0);
+        StartCoroutine(PlayerController.instance.delayFX());
         StartCoroutine(delayWin());
         textlv2.text = "Swipe your screne to move, use tool on the Way";
     }
@@ -70,6 +72,7 @@ public class Level2 : MonoBehaviour
         yield return new WaitForSeconds(1f);
         winCheck.instance.checkWin();
     }
+    
 }
 
     
