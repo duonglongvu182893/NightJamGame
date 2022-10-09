@@ -72,13 +72,6 @@ public class Level4 : MonoBehaviour
         checkWin();
 
     }
-    // Update is called once per frame
-    [System.Obsolete]
-    void Update()
-    {
-        
-        checkWin();
-    }
     public void createMatrixNxN(Vector2 size)
     {
         for (int i = 0; i < size.x; i++)

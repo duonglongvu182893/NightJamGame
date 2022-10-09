@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class CountText : MonoBehaviour
@@ -8,14 +9,13 @@ public class CountText : MonoBehaviour
     public float currentTime = 5;
     public TextMeshProUGUI text;
     public GameObject textCount;
+    public Button reloadButton;
     // Start is called before the first frame update
     void Start()
     {
         PlayerController.instance.isUsingUI = true;
     }
     
-
-    // Update is called once per frame
     void Update()
     {
         currentTime = currentTime - Time.deltaTime;
@@ -23,6 +23,7 @@ public class CountText : MonoBehaviour
         if (currentTime <= 0)
         {
             PlayerController.instance.isUsingUI = false;
+            reloadButton.interactable = true;
             StartCoroutine(delay());
         }
     }
@@ -30,6 +31,7 @@ public class CountText : MonoBehaviour
     {
         currentTime = 5;
         PlayerController.instance.isUsingUI = true;
+        reloadButton.interactable = false;
     }
     IEnumerator delay()
     {

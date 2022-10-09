@@ -19,7 +19,7 @@ public class enableFXWorldCube : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        StartCoroutine(ifItColision());
+        StartCoroutine(ifItColision()); 
     }
     IEnumerator ifItColision()
     {

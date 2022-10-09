@@ -67,14 +67,7 @@ public class Level5 : MonoBehaviour
         checkWin();
 
     }
-    // Update is called once per frame
-    [System.Obsolete]
-    void Update()
-    {
-        //GenMap.instance.board[Mathf.FloorToInt(3 + 1 * sizeOfLevel4.x)].istouch = true;
-        //GenMap.instance.board[Mathf.FloorToInt(2 + 2 * sizeOfLevel4.x)].istouch = true;
-        checkWin();
-    }
+    
     public void createMatrixNxN(Vector2 size)
     {
         for (int i = 0; i < size.x; i++)
@@ -84,8 +77,7 @@ public class Level5 : MonoBehaviour
                 GenMap.instance.board[Mathf.FloorToInt(i + j * size.x)].isVisited = true;
             }
         }
-        //GenMap.instance. setTouch(0, 2, Level4.instance.sizeOfLevel4);
-        //GenMap.instance.setTouch(0, 1, Level4.instance.sizeOfLevel4);
+        
 
     }
     public void check(Vector2 size)

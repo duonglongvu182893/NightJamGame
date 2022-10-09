@@ -30,17 +30,6 @@ public class Level6 : MonoBehaviour
     {
         instance = this;
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        transform.position = new Vector3(0, 3, 0);
-        
-        lv1.SetActive(false);
-        lv3.SetActive(false);
-        lv4.SetActive(false);
-        lv6.SetActive(true);
-        dialog.show();
-    }
     
     [System.Obsolete]
     private void FixedUpdate()
@@ -96,6 +85,7 @@ public class Level6 : MonoBehaviour
         dialog.show();
         Player.transform.position = new Vector3(0, 3, 0);
         StartCoroutine(PlayerController.instance.delayFX());
+        text.text = "Remember where the pads appear, after 5s put the cube in it";
     }
 
     [System.Obsolete]
@@ -169,8 +159,4 @@ public class Level6 : MonoBehaviour
         PlayerWhenStart.instance.numberOfClone = 3;
     }
 
-    //IEnumerator delayLevel6()
-    //{
-
-    //}
 }

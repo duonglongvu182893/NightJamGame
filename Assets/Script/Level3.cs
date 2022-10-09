@@ -24,18 +24,7 @@ public class Level3 : MonoBehaviour
         instance = this;
         
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-
-
-
-        player.transform.GetComponent<Rigidbody>().isKinematic = true;
-        player.transform.position = new Vector3(0, 3, 0);
-        
-
-    }
-
+   
     private void OnEnable()
     {
         lv3.SetActive(true);

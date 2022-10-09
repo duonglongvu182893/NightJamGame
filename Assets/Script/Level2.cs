@@ -20,17 +20,16 @@ public class Level2 : MonoBehaviour
     }
     void Start()
     {
-        player.transform.position = new Vector3(0, 3, 0);
-        //player.transform.position = new Vector3(0, 3, 0) - new Vector3(-6, -9, +15);
+        player.transform.position = new Vector3(0, 3, 0); 
         StartCoroutine(delayWin());
     }
     private void OnEnable()
     {
-        
+        textlv2.text = "Swipe your screne to move, use tool on the Way";
         player.transform.position = new Vector3(0, 3, 0);
         StartCoroutine(PlayerController.instance.delayFX());
         StartCoroutine(delayWin());
-        textlv2.text = "Swipe your screne to move, use tool on the Way";
+       
     }
     
     [System.Obsolete]
@@ -48,7 +47,7 @@ public class Level2 : MonoBehaviour
         for (int i = 0; i < numberOfDisbaleBrick.Count; i++)
         {
             GenMap.instance.board[(numberOfDisbaleBrick[i])].disableBrick = true;
-            //Debug.Log((numberOfDisbaleBrick[i]));
+           
         }
 
     }

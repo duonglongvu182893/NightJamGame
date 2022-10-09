@@ -73,21 +73,6 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void FixedUpdate()
-    {
-        //getInputClonePlayer();
-        //getInput();
-        //CheckSwipe();
-        //if (!isOnBrick && !isStayOnBrick)
-        //{
-        //    transform.GetComponent<Rigidbody>().isKinematic = false;
-        //}
-        //else
-        //{
-        //    transform.GetComponent<Rigidbody>().isKinematic = true;
-        //}
-
-    }
 
     private void getInput()
     {

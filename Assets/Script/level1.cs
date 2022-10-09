@@ -47,12 +47,6 @@ public class level1 : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     [System.Obsolete]
     public void selectLevel1(Vector2 size)
     {
