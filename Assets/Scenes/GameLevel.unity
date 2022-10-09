@@ -12563,7 +12563,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentLevel: 0
   numberOfClone: 3
-  level: 3
+  level: 1
   levelNumber: {x: 3, y: 6}
   levelOj:
   - {fileID: 1517667650}
