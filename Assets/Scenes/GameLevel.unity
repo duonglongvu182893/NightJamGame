@@ -9938,7 +9938,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Remember position and put in it
+  m_text: Remember where the pads appear, after 5s put the cube in it
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 39da977e1e91549c3a17005174a3803a, type: 2}
   m_sharedMaterial: {fileID: -6360588970910393389, guid: 39da977e1e91549c3a17005174a3803a, type: 2}
@@ -9965,8 +9965,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 70
+  m_fontSizeBase: 70
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -10656,7 +10656,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1821896313
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12563,7 +12563,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentLevel: 0
   numberOfClone: 3
-  level: 1
+  level: 3
   levelNumber: {x: 3, y: 6}
   levelOj:
   - {fileID: 1517667650}

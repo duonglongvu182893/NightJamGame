@@ -13,6 +13,7 @@ public class CountText : MonoBehaviour
     {
         PlayerController.instance.isUsingUI = true;
     }
+    
 
     // Update is called once per frame
     void Update()
@@ -28,6 +29,7 @@ public class CountText : MonoBehaviour
     private void OnEnable()
     {
         currentTime = 5;
+        PlayerController.instance.isUsingUI = true;
     }
     IEnumerator delay()
     {

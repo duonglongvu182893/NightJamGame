@@ -34,58 +34,14 @@ public class Level6 : MonoBehaviour
     void Start()
     {
         transform.position = new Vector3(0, 3, 0);
-        StartCoroutine(PlayerController.instance.delayFX());
+        
         lv1.SetActive(false);
         lv3.SetActive(false);
         lv4.SetActive(false);
         lv6.SetActive(true);
         dialog.show();
     }
-    // Update is called once per frame
-    //[System.Obsolete]
-    //void Update()
-    //{
-    //    if (PlayerWhenStart.instance.numberOfClone == 0)
-    //    {
-    //        for (int i = 0; i < sizeOfLevel6.x; i++)
-    //        {
-    //            for (int j = 0; j < sizeOfLevel6.x; j++)
-    //            {
-    //                if (GenMap.instance.board[Mathf.FloorToInt(i + j * sizeOfLevel6.x)].istouch && GenMap.instance.board[Mathf.FloorToInt(i + j * sizeOfLevel6.x)].choosenBrick)
-    //                {
-    //                    count++;
-    //                    Debug.Log("dung");
-
-    //                }
-    //                else if (GenMap.instance.board[Mathf.FloorToInt(i + j * sizeOfLevel6.x)].istouch && !GenMap.instance.board[Mathf.FloorToInt(i + j * sizeOfLevel6.x)].choosenBrick)
-    //                {
-
-    //                    Debug.Log("sai");
-
-    //                }
-    //            }
-    //        }
-    //        if (count == 3)
-    //        { 
-    //            win.SetActive(true);
-    //        }
-    //        else
-    //        {
-    //            GenMap.instance.DestroyMap();
-    //            GenMap.instance.DestroyTool();
-    //            PlayerWhenStart.instance.setLevel(PlayerWhenStart.instance.level);
-    //            PlayerController.instance.isUsingUI = true;
-    //            startLEvel6.show();
-    //            Player.transform.GetComponent<Rigidbody>().isKinematic = true;
-    //            Player.transform.position = new Vector3(0, 3, 0);
-    //            Player.transform.rotation = Quaternion.Euler(0, 0, 0);
-    //            resetLevel6();
-    //            Debug.Log("so dem la" + count);
-    //            count = 0;
-    //        }
-    //    }
-    //}
-
+    
     [System.Obsolete]
     private void FixedUpdate()
     {
@@ -139,7 +95,7 @@ public class Level6 : MonoBehaviour
         lv6.SetActive(true);
         dialog.show();
         Player.transform.position = new Vector3(0, 3, 0);
-       
+        StartCoroutine(PlayerController.instance.delayFX());
     }
 
     [System.Obsolete]
