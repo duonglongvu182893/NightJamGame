@@ -5,7 +5,7 @@ using UnityEngine;
 public class AutoDesTroyPad : MonoBehaviour
 {
     public float currentTime = 5;
-    bool isRun = false;
+    //bool isRun = false;
     // Start is called before the first frame update
     void Start()
     {

@@ -24,18 +24,7 @@ public class Level3 : MonoBehaviour
         instance = this;
         
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-
-
-
-        player.transform.GetComponent<Rigidbody>().isKinematic = true;
-        player.transform.position = new Vector3(0, 3, 0);
-        
-
-    }
-
+   
     private void OnEnable()
     {
         lv3.SetActive(true);
@@ -43,7 +32,7 @@ public class Level3 : MonoBehaviour
         lv4.SetActive(false);
         lv6.SetActive(false);
         dialog.show();
-        
+        StartCoroutine(PlayerController.instance.delayFX());
         textlv3.text = " Combine with Put button to put another cube in the right position";
         player.transform.position = new Vector3(0, 3, 0);
        

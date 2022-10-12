@@ -8,6 +8,7 @@ public class winCheck : MonoBehaviour
     public static winCheck instance;
     //[SerializeField] TweenPlayer fallDown;
     [SerializeField] GameObject star;
+    [SerializeField] GameObject Fx;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -26,6 +27,7 @@ public class winCheck : MonoBehaviour
 
     public void checkWin()
     {
+        StartCoroutine(ifFXEnable());
         star.SetActive(true);
         star.GetComponent<TweenPlayer>().ForcePlayRuntime();
       
@@ -33,6 +35,13 @@ public class winCheck : MonoBehaviour
     public void disbaleWin()
     {
         star.GetComponent<TweenPlayer>().ForcePlayBackRuntime();
+    }
+    IEnumerator ifFXEnable()
+    {
+        Fx.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        Fx.SetActive(false);
+
     }
        
       

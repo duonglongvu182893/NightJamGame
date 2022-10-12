@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform back;
     [SerializeField] AudioClip clip;
     [SerializeField] UIElement startLevel6;
+    [SerializeField] GameObject playerFx;
 
     [SerializeField] private float rollSpeed = 3;
 
@@ -72,21 +73,6 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void FixedUpdate()
-    {
-        getInputClonePlayer();
-        getInput();
-        CheckSwipe();
-        if (!isOnBrick && !isStayOnBrick)
-        {
-            transform.GetComponent<Rigidbody>().isKinematic = false;
-        }
-        else
-        {
-            transform.GetComponent<Rigidbody>().isKinematic = true;
-        }
-
-    }
 
     private void getInput()
     {
@@ -402,5 +388,10 @@ public class PlayerController : MonoBehaviour
             isStayOnBrick = true;
         }
     }
-
+    public IEnumerator delayFX()
+    {
+        playerFx.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        playerFx.SetActive(false);
+    }
 }

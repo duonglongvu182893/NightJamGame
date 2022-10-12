@@ -61,7 +61,7 @@ public class Level4 : MonoBehaviour
         lv4.SetActive(true);
         lv6.SetActive(false);
         dialog.show();
-        
+        StartCoroutine(PlayerController.instance.delayFX());
         player.transform.position = new Vector3(0, 3, 0);
         text.text = "Presum the cube is the queen., let solve the n-queen problem (4x4)";
     }
@@ -71,13 +71,6 @@ public class Level4 : MonoBehaviour
     {
         checkWin();
 
-    }
-    // Update is called once per frame
-    [System.Obsolete]
-    void Update()
-    {
-        
-        checkWin();
     }
     public void createMatrixNxN(Vector2 size)
     {

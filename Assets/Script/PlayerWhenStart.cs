@@ -69,9 +69,7 @@ public class PlayerWhenStart : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         GenMap.instance.DestroyMap();
         setLevel(level);
-        UIController.instance.reload();
-       
-
+        //UIController.instance.reload();
 
     }
 
